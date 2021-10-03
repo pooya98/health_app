@@ -19,6 +19,7 @@ public class Main3 extends Fragment {
         view = inflater.inflate(R.layout.main3, container, false);
 
         // 브랜치 테스트
+        // 풀 테스트
         return view;
     }
 }
