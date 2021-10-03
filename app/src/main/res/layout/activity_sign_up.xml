@@ -17,170 +17,115 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.07" />
 
+
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/SignUp_UserName"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="32dp"
         android:background="#EDEDED"
         android:gravity="left|center"
-
-        android:hint="아 이 디 (필수)"
-
+        android:hint="사용자 이름(3자리 이상)"
         android:inputType="text"
         android:maxLength="20"
-
         android:paddingLeft="20dp"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.032" />
 
+    <EditText
+        android:id="@+id/SignUp_Email"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:background="#EDEDED"
+        android:gravity="left|center"
+        android:hint="이 메 일"
+        android:inputType="text"
+        android:maxLength="20"
+        android:paddingLeft="20dp"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-    <!--    onclick reservationCheck 필요-->
-
     <EditText
-        android:id="@+id/company"
+        android:id="@+id/SignUp_password"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginTop="108dp"
-        android:background="#EDEDED"
-        android:gravity="left|center"
-
-        android:hint="회 사 명"
-
-        android:inputType="text"
-        android:maxLength="20"
-
-        android:paddingLeft="20dp"
-
-        android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/name"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/password_check" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:autoSizeTextType="uniform"
         android:background="#EDEDED"
         android:gravity="left|center"
-        android:hint="비밀번호 (필수)"
-
+        android:hint="비밀번호(6자리 이상)"
         android:inputType="textPassword"
         android:maxLength="20"
-
         android:paddingVertical="3dp"
         android:paddingLeft="20dp"
-
         android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/name"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintEnd_toEndOf="@+id/SignUp_Email"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/SignUp_Email"
+        app:layout_constraintTop_toBottomOf="@+id/SignUp_Email" />
 
     <EditText
-        android:id="@+id/password_check"
+        android:id="@+id/SignUp_PasswordCheck"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:autoSizeTextType="uniform"
         android:background="#EDEDED"
         android:gravity="left|center"
-        android:hint="비밀번호 확인 (필수)"
-
+        android:hint="비밀번호 확인"
         android:inputType="textPassword"
         android:maxLength="20"
-
         android:paddingLeft="20dp"
-
         android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/name"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <EditText
-        android:id="@+id/Signup_name"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        android:autoSizeTextType="uniform"
-        android:background="#EDEDED"
-        android:gravity="left|center"
-        android:hint="이름 (필수)"
-
-        android:maxLength="20"
-
-        android:paddingLeft="20dp"
-
-        android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/name"
+        app:layout_constraintEnd_toEndOf="@+id/SignUp_Email"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-
-    <EditText
-        android:id="@+id/Signup_phone"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="108dp"
-        android:autoSizeTextType="uniform"
-        android:background="#EDEDED"
-        android:gravity="left|center"
-        android:hint="휴대폰 번호('-'제외/필수)"
-
-        android:inputType="number"
-        android:maxLength="11"
-
-        android:paddingLeft="20dp"
-
-        android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/name"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintStart_toStartOf="@+id/SignUp_Email"
+        app:layout_constraintTop_toBottomOf="@+id/SignUp_password" />
 
     <Button
-        android:id="@+id/btn_signUp"
+        android:id="@+id/SignUp_DoSignUp"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/edge3"
-        android:onClick="onclick_SignUp"
+        android:layout_marginTop="112dp"
         android:text="회원가입"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/company"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="@+id/company"
-        app:layout_constraintTop_toBottomOf="@+id/company" />
+        android:background="@drawable/edge_inactivated"
+        android:clickable="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SignUp_PasswordCheck" />
 
     <Button
-        android:id="@+id/btn_Cancel_SignUp"
+        android:id="@+id/SignUp_Cancel"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="160dp"
         android:background="@drawable/edge3"
-        android:onClick="onclick_Cancel_SignUp"
         android:text="취소"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/btn_signUp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/company"
-        app:layout_constraintTop_toBottomOf="@+id/company" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SignUp_PasswordCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

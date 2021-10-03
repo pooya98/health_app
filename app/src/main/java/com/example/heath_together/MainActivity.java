@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,12 +22,38 @@ public class MainActivity extends AppCompatActivity {
     private Main2 main2;
     private Main3 main3;
     private Main4 main4;
+    private GroupFragment groupFragment;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(user != null) {
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
+
+            // Check if user's email is verified
+            boolean emailVerified = user.isEmailVerified();
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getIdToken() instead.
+            String uid = user.getUid();
+
+            System.out.println("===== TEST =====");
+            System.out.println(name);
+            System.out.println(email);
+            System.out.println(photoUrl);
+            System.out.println(emailVerified);
+            System.out.println(uid);
+            System.out.println("===== TEST =====");
+
+        }
 
         bottomNavigationView = findViewById(R.id.bottom_navi);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -55,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         main2 = new Main2();
         main3 = new Main3();
         main4 = new Main4();
+        groupFragment = new GroupFragment();
+
         setFrag(0);
         getSupportActionBar().setTitle("홈");
     }
@@ -80,6 +111,12 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.main_frame, main4);
                 ft.commit();
                 break;
+        }
+    }
+    public void onChangeFragment(int index){
+        if(index == 0){
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, groupFragment).commit();
+        }else if(index ==1){
         }
     }
 }
