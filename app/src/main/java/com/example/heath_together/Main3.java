@@ -18,6 +18,7 @@ public class Main3 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.main3, container, false);
 
+        // 브랜치 테스트
         return view;
     }
 }
