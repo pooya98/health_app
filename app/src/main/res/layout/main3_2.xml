@@ -9,24 +9,27 @@
 
     <androidx.appcompat.widget.SearchView
 
-        android:id="@+id/search_group"
+        android:id="@+id/search_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:layout_margin="2dp"
         android:layout_weight="1"
+        android:queryHint="그룹명을 입력하세요."
         app:iconifiedByDefault="false" >
 
     </androidx.appcompat.widget.SearchView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/group_list"
+        android:id="@+id/account_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="7" />
+        android:layout_weight="7">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
-        android:id="@+id/changeAcButton"
+        android:id="@+id/changeGpButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
@@ -37,6 +40,6 @@
         android:paddingEnd="2dp"
         android:paddingRight="2dp"
         android:paddingBottom="2dp"
-        android:text="toAccount" />
+        android:text="toGroup" />
 
 </LinearLayout>
