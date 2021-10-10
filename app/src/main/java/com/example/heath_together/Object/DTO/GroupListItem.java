@@ -4,6 +4,7 @@ public class GroupListItem {
     private String groupName;
     private String groupType;
     private String leaderName;
+    private String leaderUid;
     // leaderimage;
     private int mem_num;
     private int mem_limit;
@@ -48,11 +49,20 @@ public class GroupListItem {
         this.mem_limit = mem_limit;
     }
 
-    public GroupListItem(String groupName, String groupType, String leaderName, int mem_num, int mem_limit) {
+    public GroupListItem(String groupName, String groupType, String leaderName, String leaderUid, int mem_num, int mem_limit) {
         this.groupName = groupName;
         this.groupType = groupType;
         this.leaderName = leaderName;
+        this.leaderUid = leaderUid;
         this.mem_num = mem_num;
         this.mem_limit = mem_limit;
+    }
+
+    public String getLeaderUid() {
+        return leaderUid;
+    }
+
+    public void setLeaderUid(String leaderUid) {
+        this.leaderUid = leaderUid;
     }
 }

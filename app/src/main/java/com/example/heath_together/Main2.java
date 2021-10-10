@@ -7,6 +7,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -52,20 +55,31 @@ public class Main2 extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mainActivity = (MainActivity)getActivity();
+        Log.d("---onAttach---", "실행");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mainActivity = null;
+        Log.d("---onDetach---", "실행");
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("---onStart---", "실행");
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.main2, container, false);
         context = container.getContext();
+
+        Log.d("---onCreateView---", "실행");
+
+        setHasOptionsMenu(true);
 
         ListView listView = (ListView)view.findViewById(R.id.listView_Group);
         ListItemAdapter adapter = new ListItemAdapter();
@@ -75,27 +89,13 @@ public class Main2 extends Fragment {
         TextView TextView_UID = (TextView)view.findViewById(R.id.Main2_ProfileUID);
 
         ImageButton ImageButton_Setting = (ImageButton)view.findViewById(R.id.Main2_Setting);
-
+        ImageButton ImageButton_CreateGroup = (ImageButton)view.findViewById(R.id.Main2_CreateGroup);
 
         CircleImageView circleImageView_ProfilePhoto = (CircleImageView)view.findViewById(R.id.Main2_ProfilePhoto);
 
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        if(user != null && db != null) {
-            DocumentReference docRef = db.collection("users").document(user.getUid());
-
-            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    UserItem userItem = documentSnapshot.toObject(UserItem.class);
-
-                    TextView_Name.setText(userItem.getUserName());
-                    TextView_Email.setText(userItem.getUserEmail());
-                    TextView_UID.setText(userItem.getUid());
-                }
-            });
-        }
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
@@ -103,9 +103,6 @@ public class Main2 extends Fragment {
             @Override
             public void onSuccess(Uri uri) {
                 Log.e("확","인");
-                Glide.with(getActivity().getApplicationContext())
-                        .load(uri)
-                        .into(circleImageView_ProfilePhoto);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -114,17 +111,9 @@ public class Main2 extends Fragment {
             }
         });
 
-
-        adapter.addItem(new GroupListItem("옥곡크루", "웨이트", "강승우", 4, 25));
-        adapter.addItem(new GroupListItem("머슐랭", "다이어트", "금윤수", 100, 100));
-        adapter.addItem(new GroupListItem("머슐랭", "다이어트", "금윤수", 100, 100));
-        adapter.addItem(new GroupListItem("머슐랭", "다이어트", "금윤수", 100, 100));
-        adapter.addItem(new GroupListItem("머슐랭", "다이어트", "금윤수", 100, 100));
-        adapter.addItem(new GroupListItem("머슐랭", "다이어트", "금윤수", 100, 100));
-        adapter.addItem(new GroupListItem("머슐랭", "다이어트", "금윤수", 100, 100));
-
+        adapter.addItem(new GroupListItem("옥곡크루", "웨이트", "강승우", "dfd",4, 25));
+        adapter.addItem(new GroupListItem("머슐랭", "다이어트", "금윤수", "odd",100, 100));
         listView.setAdapter(adapter);
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -137,6 +126,14 @@ public class Main2 extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ProfileSettingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton_CreateGroup.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CreateGroupActivity.class);
                 startActivity(intent);
             }
         });

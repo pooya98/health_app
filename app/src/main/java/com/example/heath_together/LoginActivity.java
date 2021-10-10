@@ -3,9 +3,11 @@ package com.example.heath_together;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -16,19 +18,24 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.heath_together.Dialog.LoadingDialog;
+import com.example.heath_together.Object.DTO.UserItem;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends Activity implements OnClickListener {
 
-    private FirebaseAuth mAuth;
     private static final String TAG = "LoginActivity";
+
+    private FirebaseAuth mAuth;
 
     private EditText EditText_Email;
     private EditText EditText_Password;
@@ -37,23 +44,10 @@ public class LoginActivity extends Activity implements OnClickListener {
 
     LoadingDialog customLoadingDialog;
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            // reload();
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        mAuth = FirebaseAuth.getInstance();
 
         EditText_Email = findViewById(R.id.Login_Email);
         EditText_Password = findViewById(R.id.Login_Password);
@@ -71,7 +65,15 @@ public class LoginActivity extends Activity implements OnClickListener {
         customLoadingDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         customLoadingDialog.setCancelable(false);
 
+        SharedPreferences UserInfo = getSharedPreferences("UserInfo", MODE_PRIVATE);
 
+        if(UserInfo.getString("id","") != null && UserInfo.getString("pw","") != null){
+            if(UserInfo.getString("id","").length() > 0 && UserInfo.getString("pw","").length() > 0){
+                EditText_Email.setText(UserInfo.getString("id",""));
+                EditText_Password.setText(UserInfo.getString("pw",""));
+                Login();
+            }
+        }
 
         EditText_Email.addTextChangedListener(new TextWatcher() {
             @Override
@@ -128,12 +130,12 @@ public class LoginActivity extends Activity implements OnClickListener {
     }
 
     private void Login(){
-
         customLoadingDialog.show();
+
+        mAuth = FirebaseAuth.getInstance();
 
         String email = EditText_Email.getText().toString();
         String password = EditText_Password.getText().toString();
-
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -144,7 +146,28 @@ public class LoginActivity extends Activity implements OnClickListener {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            startMainActivity();
+                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                            SharedPreferences UserInfo = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = UserInfo.edit();
+
+                            if(user != null && db != null) {
+                                DocumentReference docRef = db.collection("users").document(user.getUid());
+
+                                docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        UserItem userItem = documentSnapshot.toObject(UserItem.class);
+
+                                        editor.putString("id", EditText_Email.getText().toString());
+                                        editor.putString("pw", EditText_Password.getText().toString());
+                                        editor.putString("userName", userItem.getUserName());
+                                        editor.putString("userUid", userItem.getUid());
+                                        editor.commit();
+                                        startMainActivity();
+                                    }
+                                });
+                            }
                         } else {
                             customLoadingDialog.dismiss();
                             // If sign in fails, display a message to the user.

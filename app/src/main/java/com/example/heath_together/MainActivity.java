@@ -61,19 +61,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_home:
-                        getSupportActionBar().setTitle("홈");
                         setFrag(0);
                         break;
                     case R.id.action_group:
-                        getSupportActionBar().setTitle("그룹");
                         setFrag(1);
                         break;
                     case R.id.action_search:
-                        getSupportActionBar().setTitle("검색");
                         setFrag(2);
                         break;
                     case R.id.action_profile:
-                        getSupportActionBar().setTitle("마이페이지");
                         setFrag(3);
                         break;
                 }
@@ -87,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         groupFragment = new GroupFragment();
 
         setFrag(0);
-        getSupportActionBar().setTitle("홈");
     }
 
     private void setFrag(int n) {

@@ -21,7 +21,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpCompleteActivity extends Activity implements View.OnClickListener {
 
-
     private Button Button_Confirm;
 
     @Override
