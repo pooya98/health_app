@@ -8,13 +8,15 @@
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/group_list"
+        android:id="@+id/account_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="7" />
+        android:layout_weight="7">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
-        android:id="@+id/changeAcButton"
+        android:id="@+id/changeGpButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
@@ -25,6 +27,6 @@
         android:paddingEnd="2dp"
         android:paddingRight="2dp"
         android:paddingBottom="2dp"
-        android:text="toAccount" />
+        android:text="toGroup" />
 
 </LinearLayout>

@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class ListItemAdapter extends BaseAdapter {
 
+
+
     ArrayList<GroupListItem> group_items = new ArrayList<GroupListItem>();
     Context context;
 
@@ -42,7 +44,7 @@ public class ListItemAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.group_item, viewGroup, false);
         }
 
-        TextView nameText = view.findViewById(R.id.groupListItem_groupName);
+        TextView nameText = view.findViewById(R.id.group_name);
         TextView typeText = view.findViewById(R.id.groupListItem_groupType);
         TextView leaderNameText = view.findViewById(R.id.groupListItem_groupLeaderName);
         TextView memInfoText = view.findViewById(R.id.groupListItem_MemInfo);

@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Main3 main3;
     private Main4 main4;
     private GroupFragment groupFragment;
+
 
 
     @Override
@@ -57,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navi);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                         setFrag(2);
                         break;
                     case R.id.action_profile:
+
                         setFrag(3);
                         break;
                 }
@@ -80,7 +86,10 @@ public class MainActivity extends AppCompatActivity {
         main2 = new Main2();
         main3 = new Main3();
         main4 = new Main4();
+        main3.fillGroupList();
+        main3.fillAccountList();
         groupFragment = new GroupFragment();
+
 
         setFrag(0);
     }
@@ -99,19 +108,28 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 2:
+
                 ft.replace(R.id.main_frame, main3);
+
                 ft.commit();
                 break;
             case 3:
+
                 ft.replace(R.id.main_frame, main4);
                 ft.commit();
                 break;
         }
     }
+
+
+
+
     public void onChangeFragment(int index){
         if(index == 0){
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, groupFragment).commit();
         }else if(index ==1){
         }
     }
+
+
 }
