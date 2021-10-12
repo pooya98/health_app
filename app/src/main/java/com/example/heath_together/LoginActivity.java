@@ -16,9 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-
 import com.example.heath_together.Dialog.LoadingDialog;
 import com.example.heath_together.Object.DTO.UserItem;
 import com.google.android.gms.tasks.OnCompleteListener;
