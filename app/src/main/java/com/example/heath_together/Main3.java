@@ -15,7 +15,6 @@ import android.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -144,11 +143,19 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
     public void fillGroupList() {
 
 
+<<<<<<< Updated upstream
         GroupListItem p0 = new GroupListItem("oke곡크루", "웨이트", "강승우","d", 4, 25);
         GroupListItem p1 = new GroupListItem("머슐랭", "다이어트", "금윤수","d", 100, 100);
         GroupListItem p2 = new GroupListItem("mer슐랭", "다이어트", "금윤수","d", 100, 100);
         GroupListItem p3 = new GroupListItem("머슐랭", "다이어트", "금윤수","D", 100, 100);
         GroupListItem p4 = new GroupListItem("머슐랭", "다이어트", "금윤수","d", 100, 100);
+=======
+        GroupListItem p0 = new GroupListItem("oke곡크루", "웨이트", "강승우","uid", 4, 25);
+        GroupListItem p1 = new GroupListItem("머슐랭", "다이어트", "금윤수", "uid",100, 100);
+        GroupListItem p2 = new GroupListItem("mer슐랭", "다이어트", "금윤수", "uid",100, 100);
+        GroupListItem p3 = new GroupListItem("머슐랭", "다이어트", "금윤수","uid", 100, 100);
+        GroupListItem p4 = new GroupListItem("머슐랭", "다이어트", "금윤수", "uid",100, 100);
+>>>>>>> Stashed changes
 
         groupList.addAll(Arrays.asList(new GroupListItem[]{p0, p1, p2, p3, p4}));
     }
