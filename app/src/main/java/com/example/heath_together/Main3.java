@@ -35,6 +35,8 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
     private SearchView searchView;
     private RecyclerView recyclerView;
 
+    private String newText2;
+
 
     private RecyclerViewItemAdapter adapter;
     private SearchGAdapter searchGAdapter;                                          // 1.
@@ -45,8 +47,6 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
 
     List<GroupListItem> groupList = new ArrayList<GroupListItem>();
     List<AccountListItem> accountList = new ArrayList<AccountListItem>();
-    List<GroupListItem> groupList2;
-
     ArrayList<String> list = new ArrayList<>();
     MainActivity mainActivity;
 
@@ -71,7 +71,15 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.main3, container, false);
 
+        newText2 = null; //검색 연결 초기화.
+        groupList.clear();
+        fillGroupList();
+        accountList.clear();
+        fillAccountList();
+
+
         Log.d(TAG, "onCreateView" + groupList.toString());
+
 
         setUpReCyclerView();
         setHasOptionsMenu(true);
@@ -90,6 +98,7 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
                 if(moveBut_flag==1){
                     moveBut_flag=0;
                     moveButton.setText("toGroup");
+
                 }
                 else{
                     moveBut_flag=1;
@@ -104,32 +113,39 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
 
     private void setUpReCyclerView() {
         if(moveBut_flag==1) {
+            //리사이클러뷰에 그룹들을 나열
+
+
+
+
+            searchGAdapter = new SearchGAdapter(groupList, getActivity());
+            searchGAdapter.getFilter().filter(newText2);
 
             recyclerView = view.findViewById(R.id.group_list);  //Main3 서칭 그룹리스트                               2.
             recyclerView.setHasFixedSize(true); //뭔지 모르겠음.
-
-
-
-            layoutManager = new LinearLayoutManager(getActivity()); //리스트를 Linearlayout 형식으로 grid에 담는형식,get Activity() =>Fragment에서 쓰는 함수.
-            searchGAdapter = new SearchGAdapter(groupList, getActivity());
-
-
+            layoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(searchGAdapter);
+            groupList.clear();
+            fillGroupList();
+
+
         }else{
 
-
-
-            // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-            recyclerView = view.findViewById(R.id.group_list) ;
-            recyclerView.setHasFixedSize(true);
-
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3);
-            recyclerView.setLayoutManager(gridLayoutManager) ;
-
+            //리사이클러뷰에 계정들을 나열
 
             adapter = new RecyclerViewItemAdapter(accountList) ;
+            adapter.getFilter().filter(newText2);
+
+            recyclerView = view.findViewById(R.id.group_list) ;
+            recyclerView.setHasFixedSize(true);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3);
+            recyclerView.setLayoutManager(gridLayoutManager) ;
             recyclerView.setAdapter(adapter) ;
+            accountList.clear();
+            fillAccountList();
+
+
 
 
 
@@ -143,19 +159,14 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
     public void fillGroupList() {
 
 
-<<<<<<< Updated upstream
         GroupListItem p0 = new GroupListItem("oke곡크루", "웨이트", "강승우","d", 4, 25);
         GroupListItem p1 = new GroupListItem("머슐랭", "다이어트", "금윤수","d", 100, 100);
         GroupListItem p2 = new GroupListItem("mer슐랭", "다이어트", "금윤수","d", 100, 100);
         GroupListItem p3 = new GroupListItem("머슐랭", "다이어트", "금윤수","D", 100, 100);
         GroupListItem p4 = new GroupListItem("머슐랭", "다이어트", "금윤수","d", 100, 100);
-=======
-        GroupListItem p0 = new GroupListItem("oke곡크루", "웨이트", "강승우","uid", 4, 25);
-        GroupListItem p1 = new GroupListItem("머슐랭", "다이어트", "금윤수", "uid",100, 100);
-        GroupListItem p2 = new GroupListItem("mer슐랭", "다이어트", "금윤수", "uid",100, 100);
-        GroupListItem p3 = new GroupListItem("머슐랭", "다이어트", "금윤수","uid", 100, 100);
-        GroupListItem p4 = new GroupListItem("머슐랭", "다이어트", "금윤수", "uid",100, 100);
->>>>>>> Stashed changes
+
+
+
 
         groupList.addAll(Arrays.asList(new GroupListItem[]{p0, p1, p2, p3, p4}));
     }
@@ -178,6 +189,7 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
 
         inflater.inflate(R.menu.search_menu, menu);
         MenuItem item = menu.findItem(R.id.app_bar_search);
+
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
         searchView = (SearchView) item.getActionView();
@@ -188,15 +200,20 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
     @Override
     public boolean onQueryTextChange(String newText) {
         if(moveBut_flag==1){
-        searchGAdapter.getFilter().filter(newText);
+
+            searchGAdapter.getFilter().filter(newText);
+
         }
         else{
-            groupList.clear();
-            fillGroupList();
+
+
+
             adapter.getFilter().filter(newText);
         }
-        accountList.clear();
-        fillAccountList();
+        newText2 = newText;
+
+
+
         return false;
     }
     @Override
