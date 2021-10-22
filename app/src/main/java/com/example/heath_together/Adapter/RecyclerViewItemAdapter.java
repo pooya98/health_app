@@ -1,8 +1,6 @@
 package com.example.heath_together.Adapter;
 
-import android.accounts.Account;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +8,11 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.heath_together.Main3;
 import com.example.heath_together.Object.DTO.AccountListItem;
-import com.example.heath_together.Object.DTO.GroupListItem;
 import com.example.heath_together.R;
 
 import java.util.ArrayList;
@@ -40,7 +35,7 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
             super(itemView);
 
             // 뷰 객체에 대한 참조. (hold strong reference)
-            textView1 = itemView.findViewById(R.id.RecyclerviewItem_MemberName) ;
+            textView1 = itemView.findViewById(R.id.RecyclerviewItem_HealthName) ;
             LinearLayout_member = itemView.findViewById(R.id.memberLayout);
 
         }
