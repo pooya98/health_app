@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/item_selector">
+
+    <LinearLayout
+        android:id="@+id/healthLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/item_selector"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-37dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/Health_Setting_Image"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/HeathItem_HealthName"
+            android:layout_width="258dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="종목명"
+            android:textSize="25dp">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="10dp"
+            android:layout_height="67dp"
+            android:layout_weight="1"
+            android:text="Button"
+            android:visibility="visible" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

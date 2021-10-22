@@ -3,23 +3,35 @@
     android:id="@+id/groupItem"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:orientation="horizontal">
+    android:background="@color/cardview_light_background"
+    android:orientation="horizontal"
+    android:outlineProvider="none"
+    android:paddingTop="7.5dp"
+    android:paddingBottom="7.5dp">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="5dp"
-        android:background="#E8E5DB"
-
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/box"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:outlineProvider="none"
+        android:padding="18dp">
 
         <LinearLayout
+
+
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            android:orientation="horizontal">
+            android:layout_weight="1.7"
+            android:orientation="horizontal"
+
+            >
 
             <TextView
                 android:id="@+id/group_name"
@@ -29,33 +41,32 @@
                 android:layout_weight="4"
                 android:gravity="center_vertical"
                 android:text="그룹명"
-                android:textSize="30dp"></TextView>
+                android:textSize="23dp"></TextView>
 
             <TextView
                 android:id="@+id/groupListItem_groupType"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:layout_weight="2"
                 android:gravity="right"
                 android:text="카테고리"
                 android:textColor="#1B78C1"
-                android:textSize="20dp"></TextView>
+                android:textSize="18dp"></TextView>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1.2">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:layout_weight="1"
+                android:layout_gravity="bottom|end"
+                android:layout_weight="0.4"
                 android:text="그룹장"
-                android:textSize="20dp"></TextView>
+                android:textSize="15dp"></TextView>
 
             <ImageView
                 android:layout_width="0dp"
@@ -69,10 +80,10 @@
                 android:id="@+id/groupListItem_groupLeaderName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="end"
+                android:layout_gravity="bottom|end"
                 android:layout_weight="2"
                 android:text="그룹장명"
-                android:textSize="20dp"></TextView>
+                android:textSize="15dp"></TextView>
 
         </LinearLayout>
 
@@ -88,7 +99,7 @@
                 android:layout_gravity="end"
                 android:layout_weight="2"
                 android:text="현재 인원/정원"
-                android:textSize="20dp"></TextView>
+                android:textSize="15dp"></TextView>
         </LinearLayout>
 
 

@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +22,7 @@ import com.example.heath_together.Adapter.RecyclerViewItemAdapter;
 import com.example.heath_together.Adapter.SearchGAdapter;
 import com.example.heath_together.Object.DTO.AccountListItem;
 import com.example.heath_together.Object.DTO.GroupListItem;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +43,7 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
     private RecyclerView.LayoutManager layoutManager;
     private String result;
     private View view;
-    private Button moveButton;
+    private FloatingActionButton moveButton;
 
     List<GroupListItem> groupList = new ArrayList<GroupListItem>();
     List<AccountListItem> accountList = new ArrayList<AccountListItem>();
@@ -70,7 +70,7 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.main3, container, false);
-
+        moveBut_flag=1;
         newText2 = null; //검색 연결 초기화.
         groupList.clear();
         fillGroupList();
@@ -97,12 +97,12 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
             public void onClick(View view) {
                 if(moveBut_flag==1){
                     moveBut_flag=0;
-                    moveButton.setText("toGroup");
+                    moveButton.setImageResource(R.drawable.ic_baseline_location_searching_24);
 
                 }
                 else{
                     moveBut_flag=1;
-                    moveButton.setText("toAccount");
+                    moveButton.setImageResource(R.drawable.ic_baseline_person_search_24);
                 }
                 setUpReCyclerView();
             }
@@ -142,8 +142,12 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3);
             recyclerView.setLayoutManager(gridLayoutManager) ;
             recyclerView.setAdapter(adapter) ;
+
             accountList.clear();
             fillAccountList();
+
+            groupList.clear();
+            fillGroupList();
 
 
 
@@ -194,6 +198,11 @@ public class Main3 extends Fragment implements SearchView.OnQueryTextListener{
 
         searchView = (SearchView) item.getActionView();
         searchView.setOnQueryTextListener(this);
+
+
+        accountList.clear();
+        fillAccountList();
+
 
     }
 
