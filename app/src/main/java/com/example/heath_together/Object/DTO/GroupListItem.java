@@ -1,13 +1,38 @@
 package com.example.heath_together.Object.DTO;
 
 public class GroupListItem {
+    private String groupId;
     private String groupName;
-    private String groupType;
     private String leaderName;
     private String leaderUid;
+    private String groupIntro;
+    private String groupTag;
     // leaderimage;
     private int mem_num;
     private int mem_limit;
+    private boolean groupOpen;
+
+
+
+
+    public String getGroupIntro() {
+        return groupIntro;
+    }
+
+    public void setGroupIntro(String groupIntro) {
+        this.groupIntro = groupIntro;
+    }
+
+    public GroupListItem() {
+    }
+
+    public boolean isGroupOpen() {
+        return groupOpen;
+    }
+
+    public void setGroupOpen(boolean groupOpen) {
+        this.groupOpen = groupOpen;
+    }
 
     public String getGroupName() {
         return groupName;
@@ -15,14 +40,6 @@ public class GroupListItem {
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
-    }
-
-    public String getGroupType() {
-        return groupType;
-    }
-
-    public void setGroupType(String groupType) {
-        this.groupType = groupType;
     }
 
     public String getLeaderName() {
@@ -49,20 +66,39 @@ public class GroupListItem {
         this.mem_limit = mem_limit;
     }
 
-    public GroupListItem(String groupName, String groupType, String leaderName, String leaderUid, int mem_num, int mem_limit) {
-        this.groupName = groupName;
-        this.groupType = groupType;
-        this.leaderName = leaderName;
-        this.leaderUid = leaderUid;
-        this.mem_num = mem_num;
-        this.mem_limit = mem_limit;
-    }
-
     public String getLeaderUid() {
         return leaderUid;
     }
 
     public void setLeaderUid(String leaderUid) {
         this.leaderUid = leaderUid;
+    }
+
+    public String getGroupTag() {
+        return groupTag;
+    }
+
+    public void setGroupTag(String groupTag) {
+        this.groupTag = groupTag;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public GroupListItem(String groupId, String groupName, String leaderName, String leaderUid, String groupIntro, String groupTag, int mem_num, int mem_limit, boolean groupOpen) {
+        this.groupId = groupId;
+        this.groupName = groupName;
+        this.leaderName = leaderName;
+        this.leaderUid = leaderUid;
+        this.groupIntro = groupIntro;
+        this.groupTag = groupTag;
+        this.mem_num = mem_num;
+        this.mem_limit = mem_limit;
+        this.groupOpen = groupOpen;
     }
 }

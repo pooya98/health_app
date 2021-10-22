@@ -57,10 +57,10 @@ public class SearchGAdapter extends RecyclerView.Adapter<SearchGAdapter.MyViewHo
         // 그룹 가입화면------------------------------------------
        String groupN = groupList.get(position).getGroupName();
        String leaderN = groupList.get(position).getLeaderName();
-       String groupT = groupList.get(position).getGroupType();
+       String groupT = groupList.get(position).getGroupTag();
         //---------------------------------------------------
        holder.nameText.setText(groupList.get(position).getGroupName());
-       holder.typeText.setText(groupList.get(position).getGroupType());
+       holder.typeText.setText(groupList.get(position).getGroupTag());
        holder.leaderNameText.setText(groupList.get(position).getLeaderName());
        holder.memInfoText.setText(groupList.get(position).getMem_num() + "/" + groupList.get(position).getMem_limit());
 
@@ -135,8 +135,8 @@ public class SearchGAdapter extends RecyclerView.Adapter<SearchGAdapter.MyViewHo
 
             super(view);
             nameText = view.findViewById(R.id.group_name);//그룹이름
-            typeText = view.findViewById(R.id.groupListItem_groupType);//그룹 해쉬태그.
-            leaderNameText = view.findViewById(R.id.groupListItem_groupLeaderName);//그룹장 이름
+            typeText = view.findViewById(R.id.groupListItem_GroupTag);//그룹 해쉬태그.
+            leaderNameText = view.findViewById(R.id.groupListItem_GroupLeaderName);//그룹장 이름
             memInfoText = view.findViewById(R.id.groupListItem_MemInfo);
 
 

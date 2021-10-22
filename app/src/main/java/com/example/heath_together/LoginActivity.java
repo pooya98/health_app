@@ -15,9 +15,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.example.heath_together.Dialog.LoadingDialog;
+import com.example.heath_together.FirebaseInit.firebaseinit;
 import com.example.heath_together.Object.DTO.UserItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,12 +35,12 @@ public class LoginActivity extends Activity implements OnClickListener {
 
     private static final String TAG = "LoginActivity";
 
-    private FirebaseAuth mAuth;
+    //private FirebaseAuth mAuth;
 
     private EditText EditText_Email;
     private EditText EditText_Password;
     private Button Button_DoLogin;
-    private Button Button_GoSignUp;
+    private TextView TextViewButton_GoSignUp;
 
     LoadingDialog customLoadingDialog;
 
@@ -50,12 +52,14 @@ public class LoginActivity extends Activity implements OnClickListener {
         EditText_Email = findViewById(R.id.Login_Email);
         EditText_Password = findViewById(R.id.Login_Password);
         Button_DoLogin = findViewById(R.id.Login_DoLogin);
-        Button_GoSignUp = findViewById(R.id.Login_GoSignUp);
+        TextViewButton_GoSignUp = findViewById(R.id.Login_GoSignUp);
 
         Button_DoLogin.setOnClickListener(this);
-        Button_GoSignUp.setOnClickListener(this);
+        TextViewButton_GoSignUp.setOnClickListener(this);
 
         Button_DoLogin.setClickable(false);
+
+        firebaseinit.doFirebaseInit();
 
         //로딩창 객체 생성
         customLoadingDialog = new LoadingDialog(this);
@@ -130,12 +134,14 @@ public class LoginActivity extends Activity implements OnClickListener {
     private void Login(){
         customLoadingDialog.show();
 
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
 
         String email = EditText_Email.getText().toString();
         String password = EditText_Password.getText().toString();
 
-        mAuth.signInWithEmailAndPassword(email, password)
+        // mAuth.signInWithEmailAndPassword(email, password)
+
+        firebaseinit.firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public  void onComplete(@NonNull Task<AuthResult> task) {
@@ -143,14 +149,18 @@ public class LoginActivity extends Activity implements OnClickListener {
                             customLoadingDialog.dismiss();
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            //FirebaseUser user = mAuth.getCurrentUser();
+                            firebaseinit.firebaseUser = firebaseinit.firebaseAuth.getCurrentUser();
+
+                            //FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                             SharedPreferences UserInfo = getSharedPreferences("UserInfo", MODE_PRIVATE);
                             SharedPreferences.Editor editor = UserInfo.edit();
 
-                            if(user != null && db != null) {
-                                DocumentReference docRef = db.collection("users").document(user.getUid());
+                            //if(user != null && db != null) {
+
+                            if(firebaseinit.firebaseUser != null && firebaseinit.firebaseFirestore != null) {
+                                DocumentReference docRef = firebaseinit.firebaseFirestore.collection("users").document(firebaseinit.firebaseUser.getUid());
 
                                 docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                     @Override

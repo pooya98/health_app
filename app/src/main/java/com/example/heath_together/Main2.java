@@ -2,6 +2,7 @@ package com.example.heath_together;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,8 +24,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.example.heath_together.Adapter.ListItemAdapter;
+import com.example.heath_together.FirebaseInit.firebaseinit;
 import com.example.heath_together.Object.DTO.GroupListItem;
 import com.example.heath_together.Object.DTO.UserItem;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,7 +40,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class Main2 extends Fragment {
 
@@ -77,56 +82,76 @@ public class Main2 extends Fragment {
         view = inflater.inflate(R.layout.main2, container, false);
         context = container.getContext();
 
-        Log.d("---onCreateView---", "실행");
+        String User_Uid ="";
+        String User_Name ="";
 
-        setHasOptionsMenu(true);
+        SharedPreferences UserInfo = getActivity().getSharedPreferences("UserInfo", MODE_PRIVATE);
+
+        if (UserInfo.getString("userUid", "") != null) {
+            if (UserInfo.getString("userUid", "").length() > 0) {
+                User_Uid = UserInfo.getString("userUid", "");
+                User_Name = UserInfo.getString("UserName", "");
+            }
+        }
 
         ListView listView = (ListView)view.findViewById(R.id.listView_Group);
         ListItemAdapter adapter = new ListItemAdapter();
+        listView.setAdapter(adapter);
+        listView.setFocusable(false);
 
-        TextView TextView_Name = (TextView)view.findViewById(R.id.Main2_ProfileName);
-        TextView TextView_Email = (TextView)view.findViewById(R.id.Main2_ProfileEmail);
-        TextView TextView_UID = (TextView)view.findViewById(R.id.Main2_ProfileUID);
-
-        ImageButton ImageButton_Setting = (ImageButton)view.findViewById(R.id.Main2_Setting);
         ImageButton ImageButton_CreateGroup = (ImageButton)view.findViewById(R.id.Main2_CreateGroup);
 
-        CircleImageView circleImageView_ProfilePhoto = (CircleImageView)view.findViewById(R.id.Main2_ProfilePhoto);
+        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        //DocumentReference docRef = db.collection("memberGroups").document(User_Uid);
+        DocumentReference docRef = firebaseinit.firebaseFirestore.collection("memberGroups").document(User_Uid);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        storageRef.child("userProfilePhoto/"+user.getUid()+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(Uri uri) {
-                Log.e("확","인");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e("노","확인");
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+
+                        ArrayList<String> grouplst = (ArrayList<String>)document.get("grouplist");
+                        DocumentReference docRef_inner;
+                        for (String groupId : grouplst){
+                            docRef_inner = firebaseinit.firebaseFirestore.collection("groups").document(groupId);
+                            docRef_inner.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    GroupListItem item = documentSnapshot.toObject(GroupListItem.class);
+                                    adapter.addItem(item);
+                                    adapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
             }
         });
-
-        adapter.addItem(new GroupListItem("옥곡크루", "웨이트", "강승우", "dfd",4, 25));
-        adapter.addItem(new GroupListItem("머슐랭", "다이어트", "금윤수", "odd",100, 100));
-        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                mainActivity.onChangeFragment(0);
-            }
-        });
 
-        ImageButton_Setting.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ProfileSettingActivity.class);
-                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString("GroupId", adapter.getItem(position).getGroupId());
+
+                Fragment groupFragment = new GroupFragment();
+                groupFragment.setArguments(bundle);
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.main_frame, groupFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
