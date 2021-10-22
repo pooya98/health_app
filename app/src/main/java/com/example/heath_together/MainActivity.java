@@ -1,14 +1,13 @@
 package com.example.heath_together;
 
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private Main1 main1;
+    private Main1_1 main1;
     private Main2 main2;
     private Main3 main3;
     private Main4 main4;
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        main1 = new Main1();
+        main1 = new Main1_1();
         main2 = new Main2();
         main3 = new Main3();
         main4 = new Main4();

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/changeCategori"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/ic_dashboard_black_24dp"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabCustomSize="75dp"
+        app:maxImageSize="40dp" />/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/healthPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="170dp"
+        android:src="@drawable/plus"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabCustomSize="75dp"
+        app:maxImageSize="40dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/changeGuitar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/guitar"
+        android:visibility="invisible"
+
+        app:backgroundTint="@color/colorPrimary"
+        app:fabCustomSize="75dp"
+        app:maxImageSize="50dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/changeChest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="170dp"
+        android:src="@drawable/chest"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabCustomSize="75dp"
+        app:maxImageSize="50dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/changeBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="260dp"
+        android:src="@drawable/back"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabCustomSize="75dp"
+        app:maxImageSize="50dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/changeLeg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="350dp"
+        android:src="@drawable/leg"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabCustomSize="75dp"
+        app:maxImageSize="50dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/changeShoulder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="440dp"
+        android:src="@drawable/shoulder"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabCustomSize="75dp"
+        app:maxImageSize="50dp" />
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4.1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/healthButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="종목" />
+
+            <Button
+                android:id="@+id/healthListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="리스트" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/health_list"
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:layout_weight="0.7">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/countButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4.1" />
+
+</LinearLayout>
+
+</RelativeLayout>
