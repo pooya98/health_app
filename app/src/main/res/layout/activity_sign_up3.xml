@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="200dp"
+            android:layout_height="90dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="사용자 이름과 프로필 사진를 설정하세요."
+            android:textColor="#5B5B5C"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginVertical="15dp">
+        </TextView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/Main2_ProfilePhoto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:src="@mipmap/ic_launcher"/>
+
+        <EditText
+            android:id="@+id/SignUp_EmailCheck"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/edge"
+            android:gravity="center"
+            android:hint="사용자 이름"
+            android:inputType="text"
+            android:maxLength="20"
+            android:layout_marginBottom="15dp"
+            android:textSize="14dp"/>
+
+        <Button
+            android:id="@+id/SignUp_DoSignUp"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:text="완료"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edge_inactivated"
+            android:clickable="false" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </LinearLayout>
+
+</LinearLayout>

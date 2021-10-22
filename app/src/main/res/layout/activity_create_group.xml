@@ -5,135 +5,168 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="그룹 개설"
-        android:textSize="30dp"
-        android:textStyle="bold">
-    </TextView>
+        android:layout_weight="4"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="그룹명"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:gravity="bottom">
-    </TextView>
-    <EditText
-        android:id="@+id/CreateGroup_GroupName"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@drawable/edge"
-        android:layout_margin="10dp">
-    </EditText>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="최대인원"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:gravity="bottom">
-    </TextView>
-    <EditText
-        android:id="@+id/CreateGroup_GroupMaxLimit"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@drawable/edge"
-        android:layout_margin="10dp"
-        android:inputType="number">
-    </EditText>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="공개여부"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:gravity="bottom">
-    </TextView>
-    <RadioGroup
-        android:id="@+id/radioGroup1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-
-        <RadioButton
-            android:id="@+id/CreateGroup_Radio_public"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@drawable/radiobutton_selector"
-            android:button="@null"
-            android:gravity="center"
-            android:text="공개"
-            android:textSize="20dp"
-            android:checked="true"
-            android:textColor="@drawable/radio_button_textcolor_selector" />
+            android:text="그룹 개설"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical">
+        </TextView>
 
-        <RadioButton
-            android:id="@+id/CreateGroup_Radio_private"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/radiobutton_selector"
-            android:button="@null"
-            android:gravity="center"
-            android:text="비공개"
-            android:textSize="20dp"
-            android:textColor="@drawable/radio_button_textcolor_selector" />
-    </RadioGroup>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="그룹 소개"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:gravity="bottom">
-    </TextView>
-    <EditText
-        android:id="@+id/CreateGroup_GroupIntro"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@drawable/edge"
-        android:layout_margin="10dp">
-    </EditText>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="그룹 태그"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:gravity="bottom">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@drawable/edge"
-        android:layout_margin="10dp">
-    </EditText>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="30dp">
 
-    <Button
-        android:id="@+id/CreateGroup_DoCreateGroup"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:text="그룹명"
+                android:textSize="15dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/CreateGroup_GroupName"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/edge">
+            </EditText>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="최대인원"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:gravity="bottom"
+                android:layout_marginBottom="5dp">
+            </TextView>
+            <EditText
+                android:id="@+id/CreateGroup_GroupMaxLimit"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/edge"
+                android:inputType="number">
+            </EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="그룹 소개"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:gravity="bottom"
+                android:layout_marginBottom="5dp">
+            </TextView>
+            <EditText
+                android:id="@+id/CreateGroup_GroupIntro"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/edge">
+            </EditText>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="그룹 태그"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:gravity="bottom"
+                android:layout_marginBottom="5dp">
+            </TextView>
+            <EditText
+                android:id="@+id/CreateGroup_GroupTag"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/edge">
+            </EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="공개여부"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:gravity="bottom"
+                android:layout_marginBottom="5dp">
+            </TextView>
+            <RadioGroup
+                android:id="@+id/radioGroup1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/CreateGroup_Radio_public"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/radiobutton_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="공개"
+                    android:textSize="20dp"
+                    android:checked="true"
+                    android:textColor="@drawable/radio_button_textcolor_selector" />
+
+                <RadioButton
+                    android:id="@+id/CreateGroup_Radio_private"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/radiobutton_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="비공개"
+                    android:textSize="20dp"
+                    android:textColor="@drawable/radio_button_textcolor_selector" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/CreateGroup_DoCreateGroup"
+                android:layout_width="match_parent"
+                android:background="@drawable/edge_inactivated"
+                android:layout_height="0dp"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_weight="1.5"
+                android:text="그룹 개설하기"
+                android:layout_marginTop="40dp">
+
+            </Button>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:text="그룹 개설하기">
+        android:layout_weight="1">
 
-    </Button>
+    </LinearLayout>
 
 
 </LinearLayout>

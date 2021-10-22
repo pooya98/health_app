@@ -9,6 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import com.example.heath_together.FirebaseInit.firebaseinit;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,32 +32,29 @@ public class MainActivity extends AppCompatActivity {
     private GroupFragment groupFragment;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        if(user != null) {
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
+        if(firebaseinit.firebaseUser != null) {
+            String name = firebaseinit.firebaseUser.getDisplayName();
+            String email = firebaseinit.firebaseUser.getEmail();
+            Uri photoUrl = firebaseinit.firebaseUser.getPhotoUrl();
 
             // Check if user's email is verified
-            boolean emailVerified = user.isEmailVerified();
+            // boolean emailVerified = user.isEmailVerified();
 
             // The user's ID, unique to the Firebase project. Do NOT use this value to
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getIdToken() instead.
-            String uid = user.getUid();
+            String uid = firebaseinit.firebaseUser.getUid();
 
             System.out.println("===== TEST =====");
             System.out.println(name);
             System.out.println(email);
             System.out.println(photoUrl);
-            System.out.println(emailVerified);
+            //System.out.println(emailVerified);
             System.out.println(uid);
             System.out.println("===== TEST =====");
 

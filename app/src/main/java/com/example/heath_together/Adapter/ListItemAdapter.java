@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.heath_together.Object.DTO.GroupListItem;
@@ -13,8 +14,6 @@ import com.example.heath_together.R;
 import java.util.ArrayList;
 
 public class ListItemAdapter extends BaseAdapter {
-
-
 
     ArrayList<GroupListItem> group_items = new ArrayList<GroupListItem>();
     Context context;
@@ -25,7 +24,7 @@ public class ListItemAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public GroupListItem getItem(int position) {
         return group_items.get(position);
     }
 
@@ -44,15 +43,18 @@ public class ListItemAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.group_item, viewGroup, false);
         }
 
-        TextView nameText = view.findViewById(R.id.group_name);
-        TextView typeText = view.findViewById(R.id.groupListItem_groupType);
-        TextView leaderNameText = view.findViewById(R.id.groupListItem_groupLeaderName);
-        TextView memInfoText = view.findViewById(R.id.groupListItem_MemInfo);
+        TextView GroupName = view.findViewById(R.id.groupListItem_GroupName);
+        TextView GroupLeaderName = view.findViewById(R.id.groupListItem_GroupLeaderName);
+        TextView MemInfo = view.findViewById(R.id.groupListItem_MemInfo);
+        TextView GroupTag = view.findViewById(R.id.groupListItem_GroupTag);
+        ImageButton groupListItem_setButton = view.findViewById(R.id.groupListItem_setButton);
 
-        nameText.setText(groupListItem.getGroupName());
-        typeText.setText(groupListItem.getGroupType());
-        leaderNameText.setText(groupListItem.getLeaderName());
-        memInfoText.setText(groupListItem.getMem_num() + "/" + groupListItem.getMem_limit());
+        groupListItem_setButton.setFocusable(false);
+
+        GroupName.setText(groupListItem.getGroupName());
+        GroupLeaderName.setText(groupListItem.getLeaderName());
+        MemInfo.setText(groupListItem.getMem_num() + "/" + groupListItem.getMem_limit());
+        GroupTag.setText(groupListItem.getGroupTag());
 
         return view;
     }

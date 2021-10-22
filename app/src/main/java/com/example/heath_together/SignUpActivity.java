@@ -37,7 +37,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SignUpActivity  extends Activity implements View.OnClickListener {
@@ -199,7 +202,14 @@ public class SignUpActivity  extends Activity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
+
+
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                            Map<String, Object> docData = new HashMap<>();
+                            docData.put("grouplist", Arrays.asList());
+
+                            db.collection("memberGroups").document(user.getUid()).set(docData);
                             FirebaseStorage storage = FirebaseStorage.getInstance();
                             Uri uri = Uri.parse("android.resource://com.example.heath_together/drawable/profile");
 
@@ -219,8 +229,8 @@ public class SignUpActivity  extends Activity implements View.OnClickListener {
                                 }
                             });
 
-                            UserItem city = new UserItem(name, email, user.getUid());
-                            db.collection("users").document(user.getUid()).set(city)
+                            UserItem userItem = new UserItem(name, email, user.getUid());
+                            db.collection("users").document(user.getUid()).set(userItem)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
