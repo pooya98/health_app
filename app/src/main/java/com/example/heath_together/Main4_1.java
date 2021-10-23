@@ -78,9 +78,6 @@ public class Main4_1 extends Fragment {
             setListViewHeightBasedOnChildren(listView);
         }
 
-        Log.d("test", "Test : " + date_table.get(date)[0]);
-
-
         //setText in calendar label
         whenDate.setText(date);
 

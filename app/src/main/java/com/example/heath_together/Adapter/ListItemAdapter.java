@@ -46,6 +46,8 @@ public class ListItemAdapter extends BaseAdapter {
         TextView GroupName = view.findViewById(R.id.groupListItem_GroupName);
         TextView GroupLeaderName = view.findViewById(R.id.groupListItem_GroupLeaderName);
         TextView MemInfo = view.findViewById(R.id.groupListItem_MemInfo);
+
+//        error
 //        TextView GroupTag = view.findViewById(R.id.groupListItem_GroupTag);
         ImageButton groupListItem_setButton = view.findViewById(R.id.groupListItem_setButton);
 
@@ -54,6 +56,8 @@ public class ListItemAdapter extends BaseAdapter {
         GroupName.setText(groupListItem.getGroupName());
         GroupLeaderName.setText(groupListItem.getLeaderName());
         MemInfo.setText(groupListItem.getMem_num() + "/" + groupListItem.getMem_limit());
+
+//        error
 //        GroupTag.setText(groupListItem.getGroupTag());
 
         return view;
