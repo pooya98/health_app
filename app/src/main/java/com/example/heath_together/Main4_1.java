@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,9 +15,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.heath_together.Adapter.ProfileListViewAdapter;
 import com.example.heath_together.Object.DTO.ProfileListItem;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.CalendarMode;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -27,7 +29,7 @@ import java.util.Map;
 
 public class Main4_1 extends Fragment {
 
-    CalendarView calendarView;
+    MaterialCalendarView calendarView;
     TextView whenDate;
     String date;
 
@@ -49,7 +51,7 @@ public class Main4_1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main4_1, container, false);
-        calendarView = (CalendarView) view.findViewById(R.id.calendarView4);
+        calendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView4);
         whenDate = (TextView) view.findViewById(R.id.whenDate);
 
         Calendar calendar = Calendar.getInstance();
@@ -81,11 +83,20 @@ public class Main4_1 extends Fragment {
         //setText in calendar label
         whenDate.setText(date);
 
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener()
-        {
+
+        calendarView.state().edit()
+                .setFirstDayOfWeek(Calendar.SUNDAY)
+                .setCalendarDisplayMode(CalendarMode.MONTHS)
+                .commit();
+
+        calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth){
-                String data = year + "/" + (month + 1) + "/" + dayOfMonth;
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                int Year = date.getYear();
+                int Month = date.getMonth();
+                int day = date.getDay();
+                String data = Year + "/" + (Month + 1) + "/" + day;
+
                 adapter.resetItme();
                 adapter.notifyDataSetChanged();
 

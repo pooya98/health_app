@@ -31,6 +31,7 @@
         <activity android:name=".ProfileSettingActivity" />
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".main4_2_CreateList" />
+        <activity android:name=".Main4_3_CreateExercise" />
     </application>
 
 </manifest>
