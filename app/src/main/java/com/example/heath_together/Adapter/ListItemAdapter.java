@@ -56,6 +56,7 @@ public class ListItemAdapter extends BaseAdapter {
         MemInfo.setText(groupListItem.getMem_num() + "/" + groupListItem.getMem_limit());
         //GroupTag.setText(groupListItem.getGroupTag());
 
+
         return view;
     }
 

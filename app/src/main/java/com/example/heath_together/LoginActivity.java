@@ -121,6 +121,7 @@ public class LoginActivity extends Activity implements OnClickListener {
         }
         else if(_id == R.id.Login_DoLogin){
             Login();
+//            startMainActivity();
         }
     }
 
