@@ -1,5 +1,8 @@
 package com.example.heath_together;
 
+
+import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +17,17 @@ import androidx.fragment.app.Fragment;
 
 import com.example.heath_together.Adapter.ExerciseCompleteItemAdapter;
 import com.example.heath_together.Adapter.ExerciseReadyItemAdapter;
+
+import com.example.heath_together.Adapter.ListItemAdapter;
 import com.example.heath_together.Object.DTO.ExerciseCompleteListItem;
 import com.example.heath_together.Object.DTO.ExerciseReadyListItem;
+import com.example.heath_together.Object.DTO.GroupListItem;
+
 
 public class Main1 extends Fragment {
 
     private View view;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,6 +59,7 @@ public class Main1 extends Fragment {
         adapter_stageExercise.addItem(new ExerciseReadyListItem("라면"));
         listView_StageExercise.setAdapter(adapter_stageExercise);
 
+
         Button_Add_Exercise.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -64,6 +73,7 @@ public class Main1 extends Fragment {
 
             }
         });
+
 
         Button_Exercise_StartEnd.setOnClickListener(new Button.OnClickListener(){
             @Override
