@@ -217,14 +217,14 @@ public class Main1_1 extends Fragment {
 
     public void fillChestItemList(){
 
-        HealthItem a0 = new HealthItem("벤치 프레스");
-        HealthItem a1 = new HealthItem("덤벨 프레스");
-        HealthItem a2 = new HealthItem("중량 푸쉬업");
-        HealthItem a3 = new HealthItem("중량 딥스");
-        HealthItem a4 = new HealthItem("강승우식 벤치프레스");
-        HealthItem a5 = new HealthItem("금윤수식 벤치프레스");
-        HealthItem a6 = new HealthItem("맥주 마시고싶다");
-        HealthItem a7 = new HealthItem("치킨 버어억");
+            HealthItem a0 = new HealthItem("벤치 프레스");
+            HealthItem a1 = new HealthItem("덤벨 프레스");
+            HealthItem a2 = new HealthItem("중량 푸쉬업");
+            HealthItem a3 = new HealthItem("중량 딥스");
+            HealthItem a4 = new HealthItem("강승우식 벤치프레스");
+            HealthItem a5 = new HealthItem("금윤수식 벤치프레스");
+            HealthItem a6 = new HealthItem("맥주 마시고싶다");
+            HealthItem a7 = new HealthItem("치킨 버어억");
 
 
         healthItemList.addAll(Arrays.asList(new HealthItem[]{a0,a1,a2,a3,a4,a5,a6,a7}));

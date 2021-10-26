@@ -13,12 +13,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-
 import com.example.heath_together.Adapter.ProfileListViewAdapter;
 import com.example.heath_together.Object.DTO.ProfileListItem;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -78,7 +76,7 @@ public class Main4_1 extends Fragment {
             setListViewHeightBasedOnChildren(listView);
         }
 
-        Log.d("test", "Test : " + date_table.get(date)[0]);
+//        Log.d("test", "Test : " + date_table.get(date)[0]);
 
 
         //setText in calendar label
