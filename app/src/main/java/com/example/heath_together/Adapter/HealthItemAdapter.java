@@ -10,21 +10,30 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.heath_together.ClickCallbackListener;
 import com.example.heath_together.Main1_1;
 import com.example.heath_together.Object.DTO.HealthItem;
 import com.example.heath_together.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HealthItemAdapter extends RecyclerView.Adapter<HealthItemAdapter.ViewHolder>  {
 
     public static SparseBooleanArray mSelectedItems = new SparseBooleanArray(0);//position별 선택상태를 저장하는 구조
-    private int k ;
+    private int k;
     private Main1_1 main;
+
+    ArrayList<HealthItem> add_list = new ArrayList<HealthItem>();
+    private ClickCallbackListener callbackListener;
 
 
 
     private List<HealthItem> healthList ;
+
+    public void setCallbackListener(ClickCallbackListener callbackListener) {
+        this.callbackListener = callbackListener;
+    }
 
 
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
@@ -77,7 +86,7 @@ public class HealthItemAdapter extends RecyclerView.Adapter<HealthItemAdapter.Vi
     @Override
     public void onBindViewHolder(HealthItemAdapter.ViewHolder holder, int position) {
 
-        holder.textView1.setText(healthList.get(position).getHealthName());
+        holder.textView1.setText(healthList.get(position).getName());
 
 
         holder.itemView.setSelected(isItemSelected(position));
@@ -105,10 +114,13 @@ public class HealthItemAdapter extends RecyclerView.Adapter<HealthItemAdapter.Vi
         if(mSelectedItems.get(position,false)==true){
             mSelectedItems.delete(position);
             notifyItemChanged(position);
+            add_list.remove(healthList.get(position));
+            callbackListener.callBack(add_list);
         } else {
             mSelectedItems.put(position,true);
             notifyItemChanged(position);
-
+            add_list.add(healthList.get(position));
+            callbackListener.callBack(add_list);
         }
     }
 

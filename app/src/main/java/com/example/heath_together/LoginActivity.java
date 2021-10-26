@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import com.example.heath_together.Dialog.LoadingDialog;
 import com.example.heath_together.FirebaseInit.firebaseinit;
 import com.example.heath_together.Object.DTO.UserItem;
+import com.example.heath_together.UserInfo.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -28,6 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 
 public class LoginActivity extends Activity implements OnClickListener {
 
@@ -153,8 +155,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 
                             //FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                            SharedPreferences UserInfo = getSharedPreferences("UserInfo", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = UserInfo.edit();
+                            SharedPreferences UserInfo_sf = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = UserInfo_sf.edit();
 
                             //if(user != null && db != null) {
 
@@ -170,6 +172,8 @@ public class LoginActivity extends Activity implements OnClickListener {
                                         editor.putString("pw", EditText_Password.getText().toString());
                                         editor.putString("userName", userItem.getUserName());
                                         editor.putString("userUid", userItem.getUid());
+                                        UserInfo.user_Id = userItem.getUid();
+                                        UserInfo.user_Name = userItem.getUserName();
                                         editor.commit();
                                         startMainActivity();
                                     }
