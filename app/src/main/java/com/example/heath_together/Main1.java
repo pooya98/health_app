@@ -2,7 +2,9 @@ package com.example.heath_together;
 
 import static android.content.ContentValues.TAG;
 
+
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.heath_together.Adapter.ExerciseCompleteItemAdapter;
 import com.example.heath_together.Adapter.ExerciseReadyItemAdapter;
+
 import com.example.heath_together.Adapter.ListItemAdapter;
 import com.example.heath_together.FirebaseInit.firebaseinit;
 import com.example.heath_together.Object.DTO.ExerciseCompleteListItem;
@@ -37,6 +40,7 @@ import com.google.firestore.v1.ArrayValueOrBuilder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class Main1 extends Fragment {
 

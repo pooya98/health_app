@@ -277,7 +277,6 @@ public class Main1_1 extends Fragment {
 
     }
 
-
     public void fillHealthListList(){
 
         HealthListItem a0 = new HealthListItem("가슴 폭발 루틴",4);

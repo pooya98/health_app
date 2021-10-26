@@ -121,6 +121,7 @@ public class Main2 extends Fragment {
         view = inflater.inflate(R.layout.main2, container, false);
         context = container.getContext();
 
+
         User_Uid ="";
         User_Name ="";
 
@@ -139,6 +140,7 @@ public class Main2 extends Fragment {
         listView.setFocusable(false);
 
         ImageButton ImageButton_CreateGroup = (ImageButton)view.findViewById(R.id.Main2_CreateGroup);
+
 
 
 

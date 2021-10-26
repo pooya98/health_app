@@ -47,7 +47,9 @@ public class GroupFragment  extends Fragment {
 
         if (getArguments() != null) {
             group_id = getArguments().getString("GroupId");
+
             System.out.println("봐라봐라" + group_id);
+
         }else{
             System.out.println("잃어버렸어요 ㅠㅠ");
         }

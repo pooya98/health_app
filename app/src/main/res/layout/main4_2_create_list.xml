@@ -3,15 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="리스트 생성"
-        android:textSize="30dp"
-        android:textStyle="bold"></TextView>
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="리스트 생성"
+            android:textSize="30dp"
+            android:textStyle="bold"></TextView>
+
+        <Button
+            android:id="@+id/CreateList_DoProfileList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="생성하기">
+
+        </Button>
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
@@ -36,53 +53,47 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="bottom"
-        android:text="카테고리"
-        android:textSize="20dp"
-        android:textStyle="bold"></TextView>
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="bottom"
         android:text="리스트"
         android:textSize="20dp"
         android:textStyle="bold"></TextView>
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="11"
         android:orientation="vertical">
 
         <ListView
             android:id="@+id/CreatList_ListView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
-        <Button
-            android:layout_width="match_parent"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/exercise_plus_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="추가하기">
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
 
-        </Button>
-    </LinearLayout>
+            android:layout_marginStart="16dp"
+
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="50dp"
+            android:src="@drawable/plus"
+            android:visibility="visible"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabCustomSize="75dp"
+            app:maxImageSize="40dp" />
+
+
+    </RelativeLayout>
 
     <Button
-        android:id="@+id/CreateList_DoProfileList"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:text="리스트 생성하기">
+        android:layout_height="wrap_content"
+        android:text="추가하기">
 
     </Button>
 
