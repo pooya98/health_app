@@ -21,6 +21,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -63,10 +64,25 @@ public class Main4_1 extends Fragment {
 
         //create hash map
         date_table = new HashMap<>();
-        String[] table = new String[] {"asd", "asd", "dqfwef"};
         date_table.put("2021/10/23", date_list[0]);
         date_table.put("2021/10/15", date_list[1]);
         date_table.put("2021/10/17", date_list[2]);
+
+
+
+//      Calendar Decorator
+        ArrayList<CalendarDay> calendarDayList = new ArrayList<CalendarDay>();
+
+//        calendarDayList.add(CalendarDay.today());
+        //month 0~11
+        calendarDayList.add(CalendarDay.from(2021, 9, 23));
+        calendarDayList.add(CalendarDay.from(2021, 9, 15));
+        calendarDayList.add(CalendarDay.from(2021, 9, 17));
+
+        EventDecorator eventDecorator = new EventDecorator(calendarDayList, getActivity());
+        calendarView.addDecorators(eventDecorator);
+
+
 
 
         ListView listView = (ListView) view.findViewById(R.id.main4_1_listView);
@@ -107,10 +123,8 @@ public class Main4_1 extends Fragment {
                     Log.d("test", "True case");
 
                     listView.setAdapter(adapter);
-                    setListViewHeightBasedOnChildren(listView);
-                } else {
-                    setListViewHeightBasedOnChildren(listView);
                 }
+                setListViewHeightBasedOnChildren(listView);
                 whenDate.setText(data);
             }
         });
@@ -142,4 +156,5 @@ public class Main4_1 extends Fragment {
         listView.setLayoutParams(params);
         listView.requestLayout();
     }
+
 }
