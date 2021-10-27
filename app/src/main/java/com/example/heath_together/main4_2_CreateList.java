@@ -1,31 +1,34 @@
 package com.example.heath_together;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class main4_2_CreateList extends AppCompatActivity {
 
-    String[] items = {"대한민국", "일본", "중국", "미국"};
-
+    private FloatingActionButton exercisePlusButton;
     @Override
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.main4_2_create_list);
 
-        Spinner spinner = findViewById(R.id.spinner);
-        ListView listView = findViewById(R.id.CreatList_ListView);
+        exercisePlusButton = findViewById(R.id.exercise_plus_button);
+
+        exercisePlusButton.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(main4_2_CreateList.this, main4_2_CreateListList.class);
+                startActivity(intent);
+            }
+        });
 
 
-        //spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, items);
-        adapter.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
 
 
         //listview

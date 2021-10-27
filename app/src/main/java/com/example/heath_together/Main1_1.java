@@ -1,7 +1,10 @@
 package com.example.heath_together;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,22 +12,36 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.heath_together.Adapter.HealthItemAdapter;
 import com.example.heath_together.Adapter.HealthListItemAdapter;
+import com.example.heath_together.FirebaseInit.firebaseinit;
 import com.example.heath_together.Object.DTO.HealthItem;
 import com.example.heath_together.Object.DTO.HealthListItem;
+import com.example.heath_together.UserInfo.UserInfo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main1_1 extends Fragment {
 
@@ -51,11 +68,18 @@ public class Main1_1 extends Fragment {
     private FloatingActionButton backButton ;
     private FloatingActionButton guitarButton;
 
-
+    ArrayList<HealthItem> add_list;
 
 
     List<HealthItem> healthItemList = new ArrayList<HealthItem>();
     List<HealthListItem> healthListList = new ArrayList<HealthListItem>();
+
+    private ClickCallbackListener callbackListener = new ClickCallbackListener() {
+        @Override
+        public void callBack(ArrayList<HealthItem> list) {
+            add_list = list;
+        }
+    };
 
 
 
@@ -71,7 +95,7 @@ public class Main1_1 extends Fragment {
         isOpen=false;
         healthItemList.clear();
         healthListList.clear();
-        fillChestItemList();
+        fillHealthItemList("chest");
         fillHealthListList();
 
 
@@ -92,11 +116,13 @@ public class Main1_1 extends Fragment {
         rotateForward = AnimationUtils.loadAnimation(getContext(),R.anim.rotate_forward);
         setUpHealthReCyclerView();
 
+        add_list = new ArrayList<HealthItem>();
+
         shoulderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 healthItemList.clear();
-                fillShoulderItemList();
+                fillHealthItemList("shoulder");
                 setUpHealthReCyclerView();
             }
         });
@@ -104,7 +130,7 @@ public class Main1_1 extends Fragment {
             @Override
             public void onClick(View v) {
                 healthItemList.clear();
-                fillLegItemList();
+                fillHealthItemList("leg");
                 setUpHealthReCyclerView();
             }
         });
@@ -112,7 +138,7 @@ public class Main1_1 extends Fragment {
             @Override
             public void onClick(View v) {
                 healthItemList.clear();
-                fillChestItemList();
+                fillHealthItemList("chest");
                 setUpHealthReCyclerView();
             }
         });
@@ -120,7 +146,7 @@ public class Main1_1 extends Fragment {
             @Override
             public void onClick(View v) {
                 healthItemList.clear();
-                fillBackItemList();
+                fillHealthItemList("back");
                 setUpHealthReCyclerView();
             }
         });
@@ -128,7 +154,8 @@ public class Main1_1 extends Fragment {
             @Override
             public void onClick(View v) {
                 healthItemList.clear();
-                fillGuitarItemList();
+                fillHealthItemList("guitar");
+                setUpHealthReCyclerView();
                 setUpHealthReCyclerView();
             }
         });
@@ -154,6 +181,40 @@ public class Main1_1 extends Fragment {
             }
         });
 
+        countButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(add_list.size() != 0){
+                    final DocumentReference sfDocRef = firebaseinit.firebaseFirestore.collection("stageExercise").document(UserInfo.user_Id);
+
+                    Map<String, Object> docData = new HashMap<>();
+
+                    docData.put("stagedExerciseList", add_list);
+
+                    firebaseinit.firebaseFirestore.collection("stageExercise").document(UserInfo.user_Id)
+                            .set(docData)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                    fragmentManager.beginTransaction().remove(Main1_1.this).commit();
+                                    fragmentManager.popBackStack();
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error writing document", e);
+                                }
+                            });
+
+
+                }
+            }
+        });
+
 
         return view;
     }
@@ -163,7 +224,9 @@ public class Main1_1 extends Fragment {
 
         countButton.setText("+");
         healthItemAdapter.mSelectedItems =new SparseBooleanArray(0);
-        healthItemAdapter = new HealthItemAdapter(healthItemList) ;
+        healthItemAdapter = new HealthItemAdapter(healthItemList);
+        healthItemAdapter.setCallbackListener(callbackListener);
+        
         recyclerView = view.findViewById(R.id.health_list) ;
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -214,102 +277,6 @@ public class Main1_1 extends Fragment {
 
     }
 
-
-    public void fillChestItemList(){
-
-        HealthItem a0 = new HealthItem("벤치 프레스");
-        HealthItem a1 = new HealthItem("덤벨 프레스");
-        HealthItem a2 = new HealthItem("중량 푸쉬업");
-        HealthItem a3 = new HealthItem("중량 딥스");
-        HealthItem a4 = new HealthItem("강승우식 벤치프레스");
-        HealthItem a5 = new HealthItem("금윤수식 벤치프레스");
-        HealthItem a6 = new HealthItem("맥주 마시고싶다");
-        HealthItem a7 = new HealthItem("치킨 버어억");
-
-
-        healthItemList.addAll(Arrays.asList(new HealthItem[]{a0,a1,a2,a3,a4,a5,a6,a7}));
-
-    }
-
-    public void fillShoulderItemList(){
-
-        HealthItem a0 = new HealthItem("숄더 프레스");
-        HealthItem a1 = new HealthItem("바벨 프레스");
-        HealthItem a2 = new HealthItem("밀리터리 프레스");
-        HealthItem a3 = new HealthItem("사이드 레터럴 레이즈");
-        HealthItem a4 = new HealthItem("프론트 레이즈");
-        HealthItem a5 = new HealthItem("강승우식 어깨 박살내기");
-        HealthItem a6 = new HealthItem("어깨 죽여버려");
-        HealthItem a7 = new HealthItem("뜨으아앗");
-
-
-        healthItemList.addAll(Arrays.asList(new HealthItem[]{a0,a1,a2,a3,a4,a5,a6,a7}));
-
-    }
-
-    public void fillLegItemList(){
-
-        HealthItem a0 = new HealthItem("스쿼트");
-        HealthItem a1 = new HealthItem("레그 익스텐션");
-        HealthItem a2 = new HealthItem("레그 컬");
-        HealthItem a3 = new HealthItem("레그 프레스");
-        HealthItem a4 = new HealthItem("닭다리 먹고싶다");
-        HealthItem a5 = new HealthItem("치킨치킨 음 치킨");
-        HealthItem a6 = new HealthItem("눈이 감긴다");
-
-
-        healthItemList.addAll(Arrays.asList(new HealthItem[]{a0,a1,a2,a3,a4,a5,a6}));
-
-    }
-
-
-    public void fillBackItemList(){
-
-        HealthItem a0 = new HealthItem("중량 턱걸이");
-        HealthItem a1 = new HealthItem("바벨 로우");
-        HealthItem a2 = new HealthItem("덤벨 로우");
-        HealthItem a3 = new HealthItem("랫 풀 다운");
-        HealthItem a4 = new HealthItem("데드 리프트");
-        HealthItem a5 = new HealthItem("나도 운동하고싶다");
-        HealthItem a6 = new HealthItem("시험 언제끝날까");
-
-
-        healthItemList.addAll(Arrays.asList(new HealthItem[]{a0,a1,a2,a3,a4,a5,a6}));
-
-    }
-
-    public void fillGuitarItemList(){
-
-        HealthItem a0 = new HealthItem("행잉 레그레이즈");
-        HealthItem a1 = new HealthItem("레그레이즈");
-        HealthItem a2 = new HealthItem("금윤수식 복근운동");
-
-
-        healthItemList.addAll(Arrays.asList(new HealthItem[]{a0,a1,a2}));
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void fillHealthListList(){
 
         HealthListItem a0 = new HealthListItem("가슴 폭발 루틴",4);
@@ -319,11 +286,9 @@ public class Main1_1 extends Fragment {
         HealthListItem a4 = new HealthListItem("전신 마취 루틴",10);
         HealthListItem a5 = new HealthListItem("아무거나 루틴",11);
 
-
-
         healthListList.addAll(Arrays.asList(new HealthListItem[]{a0,a1,a2,a3,a4,a5}));
-
     }
+
     private void animateCategori(){
         if(isOpen){
 
@@ -356,8 +321,37 @@ public class Main1_1 extends Fragment {
             legButton.setClickable(true);
             isOpen=true;
         }
+    }
 
+    private void fillHealthItemList(String type){
+        firebaseinit.firebaseFirestore.collection("exercise")
+                .whereEqualTo("type", type)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
 
+                                Map<String, Object> received_data = document.getData();
 
+                                HealthItem new_item = new HealthItem(
+                                        document.getId(),
+                                        (String) received_data.get("name"),
+                                        (String) received_data.get("type"),
+                                        (boolean) received_data.get("flag_count"),
+                                        (boolean) received_data.get("flag_time"),
+                                        (boolean) received_data.get("flag_weight")
+                                );
+                                System.out.println(">>>>>" + document.getId());
+                                healthItemList.add(new_item);
+                                healthItemAdapter.notifyDataSetChanged();
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 }

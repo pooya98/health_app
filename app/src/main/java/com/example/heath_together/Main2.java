@@ -56,6 +56,12 @@ public class Main2 extends Fragment {
 
     UserItem userItem;
 
+    ListView listView;
+    ListItemAdapter adapter;
+
+    String User_Uid;
+    String User_Name;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -74,37 +80,7 @@ public class Main2 extends Fragment {
     public void onStart() {
         super.onStart();
         Log.d("---onStart---", "실행");
-    }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.main2, container, false);
-        context = container.getContext();
-
-        String User_Uid ="";
-        String User_Name ="";
-
-        SharedPreferences UserInfo = getActivity().getSharedPreferences("UserInfo", MODE_PRIVATE);
-
-        if (UserInfo.getString("userUid", "") != null) {
-            if (UserInfo.getString("userUid", "").length() > 0) {
-                User_Uid = UserInfo.getString("userUid", "");
-                User_Name = UserInfo.getString("UserName", "");
-            }
-        }
-
-        ListView listView = (ListView)view.findViewById(R.id.listView_Group);
-        ListItemAdapter adapter = new ListItemAdapter();
-        listView.setAdapter(adapter);
-        listView.setFocusable(false);
-
-        ImageButton ImageButton_CreateGroup = (ImageButton)view.findViewById(R.id.Main2_CreateGroup);
-
-        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        //FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        //DocumentReference docRef = db.collection("memberGroups").document(User_Uid);
         DocumentReference docRef = firebaseinit.firebaseFirestore.collection("memberGroups").document(User_Uid);
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -137,6 +113,36 @@ public class Main2 extends Fragment {
                 }
             }
         });
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.main2, container, false);
+        context = container.getContext();
+
+
+        User_Uid ="";
+        User_Name ="";
+
+        SharedPreferences UserInfo = getActivity().getSharedPreferences("UserInfo", MODE_PRIVATE);
+
+        if (UserInfo.getString("userUid", "") != null) {
+            if (UserInfo.getString("userUid", "").length() > 0) {
+                User_Uid = UserInfo.getString("userUid", "");
+                User_Name = UserInfo.getString("UserName", "");
+            }
+        }
+
+        listView = (ListView)view.findViewById(R.id.listView_Group);
+        adapter = new ListItemAdapter();
+        listView.setAdapter(adapter);
+        listView.setFocusable(false);
+
+        ImageButton ImageButton_CreateGroup = (ImageButton)view.findViewById(R.id.Main2_CreateGroup);
+
+
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -136,8 +136,8 @@ public class SearchGAdapter extends RecyclerView.Adapter<SearchGAdapter.MyViewHo
             super(view);
             nameText = view.findViewById(R.id.group_name);//그룹이름
 
-//            error
-//            typeText = view.findViewById(R.id.groupListItem_GroupTag);//그룹 해쉬태그.
+            //typeText = view.findViewById(R.id.groupListItem_GroupTag);//그룹 해쉬태그.
+
             leaderNameText = view.findViewById(R.id.groupListItem_GroupLeaderName);//그룹장 이름
             memInfoText = view.findViewById(R.id.groupListItem_MemInfo);
 

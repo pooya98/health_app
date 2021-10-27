@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-
 import com.example.heath_together.Adapter.ProfileListViewAdapter;
 import com.example.heath_together.Object.DTO.ProfileListItem;
 import com.prolificinteractive.materialcalendarview.CalendarDay;

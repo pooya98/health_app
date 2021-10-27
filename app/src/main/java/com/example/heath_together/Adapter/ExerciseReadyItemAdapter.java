@@ -16,10 +16,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.PopupMenu;
 
-import com.example.heath_together.MainActivity;
 import com.example.heath_together.Object.DTO.ExerciseReadyListItem;
 import com.example.heath_together.R;
-import com.example.heath_together.SignUpActivity;
 
 import java.util.ArrayList;
 
@@ -57,13 +55,20 @@ public class ExerciseReadyItemAdapter extends BaseAdapter {
 
         TextView TextView_ExerciseNmae = view.findViewById(R.id.ExerciseReadyListItem_ExerciseName);
         ImageButton ImageButton_SetButton = view.findViewById(R.id.ExerciseReadyListItem_setButton);
+        ImageButton ImageButton_AddButton = view.findViewById(R.id.ExerciseReadyListItem_addButton);
 
         TextView_ExerciseNmae.setText(exerciseListItem.getExerciseName());
 
         ImageButton_SetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopup(v, position);
+                showPopupForSet(v, position);
+            }
+        });
+        ImageButton_AddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupForAdd(v, position);
             }
         });
 
@@ -74,7 +79,7 @@ public class ExerciseReadyItemAdapter extends BaseAdapter {
         stageExercise_items.add(item);
     }
 
-    private void showPopup(View v, final int position) {
+    private void showPopupForSet(View v, final int position) {
         PopupMenu popup = new PopupMenu(v.getContext(), v);
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -84,7 +89,7 @@ public class ExerciseReadyItemAdapter extends BaseAdapter {
 
                         dialog = new Dialog(v.getContext());       // Dialog 초기화
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
-                        dialog.setContentView(R.layout.exercise_dialog);
+                        dialog.setContentView(R.layout.exercise_info_dialog);
 
                         showDialog01();
 
@@ -102,6 +107,15 @@ public class ExerciseReadyItemAdapter extends BaseAdapter {
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.exercise_ready_list_menu, popup.getMenu());
         popup.show();
+    }
+
+    private void showPopupForAdd(View v, final int position) {
+
+        dialog = new Dialog(v.getContext());       // Dialog 초기화
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
+        dialog.setContentView(R.layout.exercise_add_dialog);
+
+        showDialog01();
     }
 
     public void showDialog01(){

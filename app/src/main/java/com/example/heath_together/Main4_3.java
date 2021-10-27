@@ -1,5 +1,8 @@
 package com.example.heath_together;
 
+
+import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,9 +18,15 @@ import androidx.fragment.app.Fragment;
 import com.example.heath_together.Adapter.ProfileListViewAdapter;
 import com.example.heath_together.Object.DTO.ProfileListItem;
 import com.example.heath_together.R;
+import androidx.fragment.app.Fragment;
+
 
 
 public class Main4_3 extends Fragment {
+
+    private View view;
+    private Context context;
+    private Button createExerciseButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,28 +36,22 @@ public class Main4_3 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View fv = inflater.inflate(R.layout.main4_3, container, false);
+        view = inflater.inflate(R.layout.main4_3, container, false);
 
-        ListView listView = (ListView) fv.findViewById(R.id.main4_3_list);
-        Button create_btn = (Button) fv.findViewById(R.id.main4_3_createExercise);
+        createExerciseButton = view.findViewById(R.id.create_exercise_button);
 
-        ProfileListViewAdapter adapter = new ProfileListViewAdapter();
+        createExerciseButton.setOnClickListener(new Button.OnClickListener(){
 
-        adapter.addItem(new ProfileListItem("김계란의 가슴운동", "2"));
-        adapter.addItem(new ProfileListItem("김종국의 하체운동", "3"));
-        listView.setAdapter(adapter);
-        setListViewHeightBasedOnChildren(listView);
-
-        create_btn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Main4_3_CreateExercise.class);
+                Intent intent = new Intent(getContext(), main4_3_CreateExercise.class);
                 startActivity(intent);
             }
         });
 
 
-        return fv;
+        return view;
+
     }
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
