@@ -160,7 +160,7 @@ public class CreateGroupActivity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "Transaction success!");
                         Toast.makeText(CreateGroupActivity.this, "Transaction success!", Toast.LENGTH_SHORT).show();
-
+                        finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -169,12 +169,6 @@ public class CreateGroupActivity extends AppCompatActivity {
                         Toast.makeText(CreateGroupActivity.this, "Transaction failure!", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
-
-
-
-                // <트랜잭션 종료>
 
 
             }

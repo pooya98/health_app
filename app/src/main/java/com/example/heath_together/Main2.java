@@ -81,6 +81,8 @@ public class Main2 extends Fragment {
         super.onStart();
         Log.d("---onStart---", "실행");
 
+        adapter.deleteAllItem();
+
         DocumentReference docRef = firebaseinit.firebaseFirestore.collection("memberGroups").document(User_Uid);
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

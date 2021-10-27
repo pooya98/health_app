@@ -1,11 +1,19 @@
 package com.example.heath_together.Object.DTO;
 
 public class ExerciseReadyListItem {
+    private String ExerciseId;
     private String ExerciseName;
     private boolean flag_count;
     private boolean flag_time;
     private boolean flag_weight;
 
+    public String getExerciseId() {
+        return ExerciseId;
+    }
+
+    public void setExerciseId(String exerciseId) {
+        ExerciseId = exerciseId;
+    }
 
     public void setExerciseName(String exerciseName) {
         ExerciseName = exerciseName;
@@ -40,7 +48,8 @@ public class ExerciseReadyListItem {
         this.flag_weight = flag_weight;
     }
 
-    public ExerciseReadyListItem(String exerciseName, boolean flag_count, boolean flag_time, boolean flag_weight) {
+    public ExerciseReadyListItem(String exerciseId, String exerciseName, boolean flag_count, boolean flag_time, boolean flag_weight) {
+        ExerciseId = exerciseId;
         ExerciseName = exerciseName;
         this.flag_count = flag_count;
         this.flag_time = flag_time;
