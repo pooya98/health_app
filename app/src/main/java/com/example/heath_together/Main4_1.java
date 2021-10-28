@@ -21,10 +21,13 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 
 public class Main4_1 extends Fragment {
@@ -74,9 +77,14 @@ public class Main4_1 extends Fragment {
 
 //        calendarDayList.add(CalendarDay.today());
         //month 0~11
-        calendarDayList.add(CalendarDay.from(2021, 9, 23));
-        calendarDayList.add(CalendarDay.from(2021, 9, 15));
-        calendarDayList.add(CalendarDay.from(2021, 9, 17));
+        Set<String> keySet = date_table.keySet();
+        for (String key : keySet){
+            List<String> strKey = Arrays.asList(key.split("/"));
+            calendarDayList.add(CalendarDay.from(Integer.parseInt(strKey.get(0)), Integer.parseInt(strKey.get(1))-1, Integer.parseInt(strKey.get(2))));
+        }
+//        calendarDayList.add(CalendarDay.from(2021, 9, 23));
+//        calendarDayList.add(CalendarDay.from(2021, 9, 15));
+//        calendarDayList.add(CalendarDay.from(2021, 9, 17));
 
         EventDecorator eventDecorator = new EventDecorator(calendarDayList, getActivity());
         calendarView.addDecorators(eventDecorator);

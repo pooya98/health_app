@@ -44,7 +44,7 @@ public class Main4_3 extends Fragment {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), main4_3_CreateExercise.class);
+                Intent intent = new Intent(getContext(), Main4_3_CreateExercise.class);
                 startActivity(intent);
             }
         });
