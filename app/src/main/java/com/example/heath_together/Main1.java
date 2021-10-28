@@ -101,14 +101,6 @@ public class Main1 extends Fragment {
         listView_CompleteExercise.setAdapter(adapter_completeExercise);
 
 
-//        adapter_stageExercise.addItem(new ExerciseReadyListItem("벤치프레스"));
-//        adapter_stageExercise.addItem(new ExerciseReadyListItem("데드리프트"));
-//        adapter_stageExercise.addItem(new ExerciseReadyListItem("스쿼트"));
-//        adapter_stageExercise.addItem(new ExerciseReadyListItem("덤벨로우"));
-//        adapter_stageExercise.addItem(new ExerciseReadyListItem("런지"));
-//        adapter_stageExercise.addItem(new ExerciseReadyListItem("삽겹살"));
-//        adapter_stageExercise.addItem(new ExerciseReadyListItem("소주"));
-//        adapter_stageExercise.addItem(new ExerciseReadyListItem("라면"));
         listView_StageExercise.setAdapter(adapter_stageExercise);
 
 

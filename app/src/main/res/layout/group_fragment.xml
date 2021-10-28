@@ -19,14 +19,14 @@
     </TextView>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="369dp"
         android:layout_height="120dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="5dp"
+        android:background="@drawable/edge_groupitem"
         android:orientation="vertical"
         android:paddingHorizontal="15dp"
-        android:paddingVertical="10dp"
-        android:background="@drawable/edge_groupitem">
+        android:paddingVertical="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,19 +40,18 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="4"
-                android:textColor="#4778ee"
                 android:gravity="center_vertical"
                 android:text="그룹명"
-                android:textStyle="bold"
-                android:textSize="20dp"></TextView>
+                android:textColor="#4778ee"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
 
             <ImageButton
                 android:id="@+id/roupFragment_BoxSetButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_baseline_more_horiz_24"
-                android:background="@android:color/transparent">
-            </ImageButton>
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_baseline_more_horiz_24"></ImageButton>
         </LinearLayout>
 
         <LinearLayout
@@ -79,8 +78,8 @@
                 android:id="@+id/GroupFragment_BoxGroupLeaderName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
                 android:layout_weight="2"
+                android:gravity="center_vertical"
                 android:text="그룹장명"
                 android:textSize="15dp"></TextView>
 
@@ -97,8 +96,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:text="현재 인원/정원"
                 android:gravity="center_vertical"
+                android:text="현재 인원/정원"
                 android:textSize="15dp"></TextView>
 
             <TextView
@@ -106,9 +105,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:text="그룹태그"
                 android:layout_marginLeft="30dp"
                 android:gravity="center_vertical"
+                android:text="그룹태그"
                 android:textSize="15dp"></TextView>
         </LinearLayout>
     </LinearLayout>

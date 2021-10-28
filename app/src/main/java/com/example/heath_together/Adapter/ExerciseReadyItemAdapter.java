@@ -11,15 +11,21 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.PopupMenu;
 
+import com.example.heath_together.FirebaseInit.firebaseinit;
 import com.example.heath_together.Object.DTO.ExerciseReadyListItem;
+import com.example.heath_together.Object.DTO.ExerciseRecord;
 import com.example.heath_together.R;
+import com.example.heath_together.UserInfo.UserInfo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ExerciseReadyItemAdapter extends BaseAdapter {
 
@@ -68,7 +74,7 @@ public class ExerciseReadyItemAdapter extends BaseAdapter {
         ImageButton_AddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopupForAdd(v, position);
+                showPopupForAdd(v, exerciseListItem);
             }
         });
 
@@ -109,13 +115,13 @@ public class ExerciseReadyItemAdapter extends BaseAdapter {
         popup.show();
     }
 
-    private void showPopupForAdd(View v, final int position) {
+    private void showPopupForAdd(View v, final ExerciseReadyListItem exerciseListItem) {
 
         dialog = new Dialog(v.getContext());       // Dialog 초기화
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
         dialog.setContentView(R.layout.exercise_add_dialog);
 
-        showDialog01();
+        showDialog02(exerciseListItem);
     }
 
     public void showDialog01(){
@@ -137,5 +143,51 @@ public class ExerciseReadyItemAdapter extends BaseAdapter {
                 dialog.dismiss(); // 다이얼로그 닫기
             }
         });
+    }
+
+    public void showDialog02(ExerciseReadyListItem exerciseListItem){
+        dialog.show(); // 다이얼로그 띄우기
+
+        /* 이 함수 안에 원하는 디자인과 기능을 구현하면 된다. */
+
+        // 위젯 연결 방식은 각자 취향대로~
+        // '아래 아니오 버튼'처럼 일반적인 방법대로 연결하면 재사용에 용이하고,
+        // '아래 네 버튼'처럼 바로 연결하면 일회성으로 사용하기 편함.
+        // *주의할 점: findViewById()를 쓸 때는 -> 앞에 반드시 다이얼로그 이름을 붙여야 한다.
+
+        // 아니오 버튼
+
+        LinearLayout linearLayout_count = dialog.findViewById(R.id.ExerciseAddDialog_count);
+        LinearLayout linearLayout_time = dialog.findViewById(R.id.ExerciseAddDialog_time);
+        LinearLayout linearLayout_weight = dialog.findViewById(R.id.ExerciseAddDialog_weight);
+
+        if(!exerciseListItem.isFlag_count())
+            linearLayout_count.setVisibility(View.GONE);
+
+        if(!exerciseListItem.isFlag_time())
+            linearLayout_time.setVisibility(View.GONE);
+
+        if(!exerciseListItem.isFlag_weight())
+            linearLayout_weight.setVisibility(View.GONE);
+
+
+
+        Button Button_save = dialog.findViewById(R.id.ExerciseAddDialog_SaveButton);
+
+        Button_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+                ExerciseRecord newRecord = new ExerciseRecord();
+
+                //firebaseinit.firebaseFirestore.collection(new SimpleDateFormat( "yyyyMMdd").format(new Date())).document(UserInfo.user_Id).set(city);
+
+                // 원하는 기능 구현
+                dialog.dismiss(); // 다이얼로그 닫기
+            }
+        });
+
     }
 }

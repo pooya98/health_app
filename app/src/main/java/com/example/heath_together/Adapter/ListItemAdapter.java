@@ -65,4 +65,6 @@ public class ListItemAdapter extends BaseAdapter {
     public void addItem(GroupListItem item) {
         group_items.add(item);
     }
+
+    public void deleteAllItem(){ group_items.clear();}
 }
