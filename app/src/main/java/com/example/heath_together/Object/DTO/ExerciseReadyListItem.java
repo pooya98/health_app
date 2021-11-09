@@ -48,9 +48,9 @@ public class ExerciseReadyListItem {
         this.flag_weight = flag_weight;
     }
 
-    public ExerciseReadyListItem(String exerciseId, boolean flag_count, boolean flag_time, boolean flag_weight) {
+    public ExerciseReadyListItem(String exerciseId, String exerciseName, boolean flag_count, boolean flag_time, boolean flag_weight) {
         ExerciseId = exerciseId;
-//        ExerciseName = exerciseName;
+        ExerciseName = exerciseName;
         this.flag_count = flag_count;
         this.flag_time = flag_time;
         this.flag_weight = flag_weight;

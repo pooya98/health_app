@@ -1,5 +1,7 @@
 package com.example.heath_together;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,8 +14,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.heath_together.Adapter.CalendarListViewAdapter;
 import com.example.heath_together.Adapter.ProfileListViewAdapter;
+import com.example.heath_together.FirebaseInit.firebaseinit;
+import com.example.heath_together.Object.DTO.ExerciseCompleteListItem;
 import com.example.heath_together.Object.DTO.ProfileListItem;
+import com.example.heath_together.UserInfo.UserInfo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -23,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -34,77 +45,74 @@ public class Main4_1 extends Fragment {
 
     MaterialCalendarView calendarView;
     TextView whenDate;
-    String date;
+    ListView listView;
 
-    //임시 데이터
-    Map<String, String[]> date_table;
+    Map<String, Object> calendar_data;
 
-    String date_list[][] = {
-            {"데드리프트", "스쿼트", "레그 익스텐션"},
-            {"푸쉬업", "벤치프레스", "덤벨 프레사"},
-            {"풀업", "T바 로우", "바벨 로루"}
-    };
+    ArrayList<CalendarDay> calendarDayList = new ArrayList<CalendarDay>();
+    CalendarListViewAdapter adapter;
+
+    Calendar calendar = Calendar.getInstance();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+
+    //todayDate
+    String today = sdf.format(calendar.getTime()).toString();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
 
+        DocumentReference docRef = firebaseinit.firebaseFirestore.collection("calendar").document(UserInfo.user_Id);
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+
+                    if(document.exists()){
+                        calendar_data = document.getData();
+                        ArrayList<Map<String, Object>> data = (ArrayList<Map<String, Object>>) calendar_data.get(today);
+
+                        for(Map<String ,Object> item : data){
+                            Log.d(TAG, "get Item" + item.get("exerciseName"));
+                        }
+                        for (String key : calendar_data.keySet() ){
+                            List<String> strKey = Arrays.asList(key.split("-"));
+                            calendarDayList.add(CalendarDay.from(Integer.parseInt(strKey.get(0)), Integer.parseInt(strKey.get(1))-1 , Integer.parseInt(strKey.get(2))));
+                        }
+
+                        EventDecorator eventDecorator = new EventDecorator(calendarDayList, getActivity());
+                        calendarView.addDecorators(eventDecorator);
+
+                        if (calendar_data.containsKey(today)){
+                            ArrayList<Map<String, Object>> exercise = (ArrayList<Map<String, Object>>) calendar_data.get(today);
+                            for(Map<String, Object> item : exercise){
+                                adapter.addItem(new ExerciseCompleteListItem(item.get("exerciseName").toString(), item.get("set").toString()));
+                            }
+                            listView.setAdapter(adapter);
+                            setListViewHeightBasedOnChildren(listView);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+            }
+        });
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "main4 onCreateView");
         View view = inflater.inflate(R.layout.main4_1, container, false);
         calendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView4);
         whenDate = (TextView) view.findViewById(R.id.whenDate);
+        listView = (ListView) view.findViewById(R.id.main4_1_listView);
 
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.KOREA);
+        adapter = new CalendarListViewAdapter();
 
-
-        //todayDate
-        date = sdf.format(calendar.getTime()).toString();
-
-        //create hash map
-        date_table = new HashMap<>();
-        date_table.put("2021/10/23", date_list[0]);
-        date_table.put("2021/10/15", date_list[1]);
-        date_table.put("2021/10/17", date_list[2]);
-
-
-
-//      Calendar Decorator
-        ArrayList<CalendarDay> calendarDayList = new ArrayList<CalendarDay>();
-
-//        calendarDayList.add(CalendarDay.today());
-        //month 0~11
-        Set<String> keySet = date_table.keySet();
-        for (String key : keySet){
-            List<String> strKey = Arrays.asList(key.split("/"));
-            calendarDayList.add(CalendarDay.from(Integer.parseInt(strKey.get(0)), Integer.parseInt(strKey.get(1))-1, Integer.parseInt(strKey.get(2))));
-        }
-//        calendarDayList.add(CalendarDay.from(2021, 9, 23));
-//        calendarDayList.add(CalendarDay.from(2021, 9, 15));
-//        calendarDayList.add(CalendarDay.from(2021, 9, 17));
-
-        EventDecorator eventDecorator = new EventDecorator(calendarDayList, getActivity());
-        calendarView.addDecorators(eventDecorator);
-
-
-
-
-        ListView listView = (ListView) view.findViewById(R.id.main4_1_listView);
-        ProfileListViewAdapter adapter = new ProfileListViewAdapter();
-
-        if (date_table.containsKey(date)) {
-            for (int i = 0; i < date_table.get(date).length; i++) {
-                adapter.addItem(new ProfileListItem(date_table.get(date)[i], "2"));
-            }
-            listView.setAdapter(adapter);
-            setListViewHeightBasedOnChildren(listView);
-        }
 
         //setText in calendar label
-        whenDate.setText(date);
+        whenDate.setText(today);
 
 
         calendarView.state().edit()
@@ -117,22 +125,29 @@ public class Main4_1 extends Fragment {
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 int Year = date.getYear();
                 int Month = date.getMonth();
-                int day = date.getDay();
-                String data = Year + "/" + (Month + 1) + "/" + day;
+                String day = null;
+
+                if (date.getDay() < 10){
+                    day = "0" + date.getDay();
+                } else {
+                    day = String.valueOf(date.getDay());
+                }
+
+                String c_day = Year + "-" + (Month + 1) + "-" + day;
+
 
                 adapter.resetItme();
                 adapter.notifyDataSetChanged();
 
-                if (date_table.containsKey(data)) {
-                    for (int i = 0; i < date_table.get(data).length; i++) {
-                        adapter.addItem(new ProfileListItem(date_table.get(data)[i], "2"));
+                if (calendar_data.containsKey(c_day)) {
+                    ArrayList<Map<String, Object>> exercise = (ArrayList<Map<String, Object>>) calendar_data.get(c_day);
+                    for(Map<String, Object> item : exercise){
+                        adapter.addItem(new ExerciseCompleteListItem(item.get("exerciseName").toString(), item.get("set").toString()));
                     }
-                    Log.d("test", "True case");
-
                     listView.setAdapter(adapter);
                 }
                 setListViewHeightBasedOnChildren(listView);
-                whenDate.setText(data);
+                whenDate.setText(c_day);
             }
         });
         return view;
