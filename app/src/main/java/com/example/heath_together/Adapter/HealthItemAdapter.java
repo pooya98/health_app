@@ -1,6 +1,7 @@
 package com.example.heath_together.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,7 +111,8 @@ public class HealthItemAdapter extends RecyclerView.Adapter<HealthItemAdapter.Vi
     }
 
     private void toggleItemSelected(int position){
-
+        Log.d("toggle", add_list.toString());
+        Log.d("toggle2", String.valueOf(healthList));
         if(mSelectedItems.get(position,false)==true){
             mSelectedItems.delete(position);
             notifyItemChanged(position);
