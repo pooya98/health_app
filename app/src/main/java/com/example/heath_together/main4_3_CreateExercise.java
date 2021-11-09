@@ -23,6 +23,4 @@ public class Main4_3_CreateExercise extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
-
-
 }
