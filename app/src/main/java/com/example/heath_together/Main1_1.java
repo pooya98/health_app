@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.heath_together.Adapter.ExerciseReadyItemAdapter;
 import com.example.heath_together.Adapter.HealthItemAdapter;
 import com.example.heath_together.Adapter.HealthListItemAdapter;
 import com.example.heath_together.FirebaseInit.firebaseinit;
@@ -34,9 +35,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -67,6 +72,7 @@ public class Main1_1 extends Fragment {
     private FloatingActionButton legButton ;
     private FloatingActionButton backButton ;
     private FloatingActionButton guitarButton;
+    ExerciseReadyItemAdapter adapter_stageExercise;
 
     ArrayList<HealthItem> add_list;
 
@@ -98,7 +104,6 @@ public class Main1_1 extends Fragment {
         fillHealthItemList("chest");
         fillHealthListList();
 
-
         healthPlusButton = view.findViewById(R.id.healthPlus);
         countButton = view.findViewById(R.id.countButton);
 
@@ -117,6 +122,7 @@ public class Main1_1 extends Fragment {
         setUpHealthReCyclerView();
 
         add_list = new ArrayList<HealthItem>();
+
 
         shoulderButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,7 +162,6 @@ public class Main1_1 extends Fragment {
                 healthItemList.clear();
                 fillHealthItemList("guitar");
                 setUpHealthReCyclerView();
-                setUpHealthReCyclerView();
             }
         });
 
@@ -181,34 +186,106 @@ public class Main1_1 extends Fragment {
             }
         });
 
+
+
         countButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(add_list.size() != 0){
-                    final DocumentReference sfDocRef = firebaseinit.firebaseFirestore.collection("stageExercise").document(UserInfo.user_Id);
 
                     Map<String, Object> docData = new HashMap<>();
 
-                    docData.put("stagedExerciseList", add_list);
 
-                    firebaseinit.firebaseFirestore.collection("stageExercise").document(UserInfo.user_Id)
-                            .set(docData)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "DocumentSnapshot successfully written!");
-                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                                    fragmentManager.beginTransaction().remove(Main1_1.this).commit();
-                                    fragmentManager.popBackStack();
 
+                    DocumentReference sfDocRef = firebaseinit.firebaseFirestore.collection("stageExercise").document(UserInfo.user_Id);
+
+
+                    sfDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if(task.isSuccessful()){
+                                DocumentSnapshot document = task.getResult();
+                                Log.d(TAG, "task result : " + document.getData());
+
+                                if (document.exists()){
+                                    Map<String, Object> result = document.getData();
+                                    ArrayList<Map<String, Object>> list = (ArrayList<Map<String, Object>>)result.get("stagedExerciseList");
+//                                    test section
+                                    Log.d(TAG, "array list data set : " + list);
+                                    Log.d(TAG, "add list data set : " + add_list);
+
+                                    for(Map<String, Object> i : list) {
+                                        boolean overlap = true;
+                                        for (HealthItem item : add_list){
+                                            String name = item.getName();
+                                            if(name.equals(i.get("name"))){
+                                                overlap = false;
+                                            }
+                                        }
+                                        if (overlap){
+                                        HealthItem new_item = new HealthItem(
+                                                document.getId(),
+                                                (String) i.get("name"),
+                                                (String) i.get("type"),
+                                                (boolean) i.get("flag_count"),
+                                                (boolean) i.get("flag_time"),
+                                                (boolean) i.get("flag_weight")
+                                        );
+                                        System.out.println(">>>>>2" + document.getId());
+
+                                        add_list.add(new_item);}
+                                    }
+//                                        add_list.notifyDataSetChanged();
+//                                    test end
+                                    Log.d(TAG, "search add_list : " + add_list );
+                                    docData.put("stagedExerciseList", add_list);
+                                    firebaseinit.firebaseFirestore.collection("stageExercise").document(UserInfo.user_Id)
+                                            .set(docData)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                                    fragmentManager.beginTransaction().remove(Main1_1.this).commit();
+                                                    fragmentManager.popBackStack();
+
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w(TAG, "Error writing document", e);
+                                                }
+                                            });
+                                } else {
+                                    Log.d(TAG, "No such document");
+                                    docData.put("stagedExerciseList", add_list);
+
+                                    firebaseinit.firebaseFirestore.collection("stageExercise").document(UserInfo.user_Id)
+                                            .set(docData)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                                    fragmentManager.beginTransaction().remove(Main1_1.this).commit();
+                                                    fragmentManager.popBackStack();
+
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w(TAG, "Error writing document", e);
+                                                }
+                                            });
                                 }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w(TAG, "Error writing document", e);
-                                }
-                            });
+                            } else {
+                                Log.d(TAG, "get failed with ", task.getException());
+                            }
+                        }
+                    });
+
 
 
                 }
@@ -344,7 +421,7 @@ public class Main1_1 extends Fragment {
                                         (boolean) received_data.get("flag_time"),
                                         (boolean) received_data.get("flag_weight")
                                 );
-                                System.out.println(">>>>>" + document.getId());
+                                System.out.println(">>>>>2" + document.getId());
                                 healthItemList.add(new_item);
                                 healthItemAdapter.notifyDataSetChanged();
                             }
