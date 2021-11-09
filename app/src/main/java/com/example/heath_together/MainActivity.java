@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
         bottomNavigationView = findViewById(R.id.bottom_navi);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -89,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
         main2 = new Main2();
         main3 = new Main3();
         main4 = new Main4();
-        main3.fillGroupList();
-        main3.fillAccountList();
+//        main3.fillGroupList();
+//        main3.fillAccountList();
         groupFragment = new GroupFragment();
 
 

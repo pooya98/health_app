@@ -141,7 +141,7 @@ public class Main2 extends Fragment {
         listView.setAdapter(adapter);
         listView.setFocusable(false);
 
-        ImageButton ImageButton_CreateGroup = (ImageButton)view.findViewById(R.id.Main2_CreateGroup);
+        Button Button_CreateGroup = (Button)view.findViewById(R.id.Main2_CreateGroup);
 
 
 
@@ -163,7 +163,7 @@ public class Main2 extends Fragment {
             }
         });
 
-        ImageButton_CreateGroup.setOnClickListener(new Button.OnClickListener(){
+        Button_CreateGroup.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CreateGroupActivity.class);

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
@@ -98,7 +97,7 @@ public class CreateGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String group_id = User_Uid + new SimpleDateFormat ( "yyyyMMddHHmmss").format(new Date());
+                String group_id = User_Uid + new SimpleDateFormat ("yyyyMMddHHmmss" ).format(new Date());
 
                 // <그룹 객체 생성>
                 GroupListItem InsertGroupInfo = new GroupListItem();

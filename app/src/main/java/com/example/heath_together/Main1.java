@@ -65,7 +65,7 @@ public class Main1 extends Fragment {
                         System.out.println(">>>>" + list);
                         for(Map<String, Object> i : list){
                             System.out.println(">>>>" + i.get("name"));
-                            adapter_stageExercise.addItem(new ExerciseReadyListItem((String)i.get("name"), (boolean)i.get("flag_count"), (boolean)i.get("flag_time"), (boolean)i.get("flag_weight") ));
+                            adapter_stageExercise.addItem(new ExerciseReadyListItem((String)i.get("id"),(String)i.get("name") ,(boolean)i.get("flag_count"), (boolean)i.get("flag_time"), (boolean)i.get("flag_weight") ));
                             adapter_stageExercise.notifyDataSetChanged();
                         }
 

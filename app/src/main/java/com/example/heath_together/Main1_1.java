@@ -71,11 +71,13 @@ public class Main1_1 extends Fragment {
     ArrayList<HealthItem> add_list;
 
 
+
     List<HealthItem> healthItemList = new ArrayList<HealthItem>();
     List<HealthListItem> healthListList = new ArrayList<HealthListItem>();
 
     private ClickCallbackListener callbackListener = new ClickCallbackListener() {
         @Override
+
         public void callBack(ArrayList<HealthItem> list) {
             add_list = list;
         }
@@ -96,7 +98,6 @@ public class Main1_1 extends Fragment {
         healthItemList.clear();
         healthListList.clear();
         fillHealthItemList("chest");
-        fillHealthListList();
 
 
         healthPlusButton = view.findViewById(R.id.healthPlus);
@@ -277,17 +278,7 @@ public class Main1_1 extends Fragment {
 
     }
 
-    public void fillHealthListList(){
 
-        HealthListItem a0 = new HealthListItem("가슴 폭발 루틴",4);
-        HealthListItem a1 = new HealthListItem("어깨 박살 루틴",6);
-        HealthListItem a2 = new HealthListItem("복근 초토화 루틴",3);
-        HealthListItem a3 = new HealthListItem("하체 분쇄 루틴",9);
-        HealthListItem a4 = new HealthListItem("전신 마취 루틴",10);
-        HealthListItem a5 = new HealthListItem("아무거나 루틴",11);
-
-        healthListList.addAll(Arrays.asList(new HealthListItem[]{a0,a1,a2,a3,a4,a5}));
-    }
 
     private void animateCategori(){
         if(isOpen){

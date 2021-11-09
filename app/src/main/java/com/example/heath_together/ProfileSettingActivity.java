@@ -30,6 +30,7 @@ public class ProfileSettingActivity extends Activity implements View.OnClickList
 
     private FirebaseAuth mAuth;
 
+
     private EditText EditText_UserName;
     private Button Button_TakePicture;
     private Button Button_GetPicture;

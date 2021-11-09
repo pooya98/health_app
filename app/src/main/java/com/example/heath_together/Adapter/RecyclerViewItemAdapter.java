@@ -18,12 +18,12 @@ import com.example.heath_together.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewItemAdapter.ViewHolder> implements Filterable {
+public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewItemAdapter.ViewHolder>  {
 
 
 
-    private List<AccountListItem> accountList ;
-    private List<AccountListItem> accountListFull;
+    private ArrayList<AccountListItem> accountList ;
+
 
 
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
@@ -42,9 +42,8 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
     }
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    public RecyclerViewItemAdapter(List<AccountListItem> accountList) {
+    public RecyclerViewItemAdapter(ArrayList<AccountListItem> accountList) {
         this.accountList= accountList;
-        accountListFull = new ArrayList<AccountListItem>(accountList);
     }
 
     // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
@@ -62,7 +61,7 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
     // onBindViewHolder() - position에 해당하는 데이터를 뷰홀더의 아이템뷰에 표시.
     @Override
     public void onBindViewHolder(RecyclerViewItemAdapter.ViewHolder holder, int position) {
-        holder.textView1.setText(accountList.get(position).getAccountName());
+        holder.textView1.setText(accountList.get(position).getUserName());
         //public void on Click =>아이템이 눌렸을때 프로필로 입장하는 함수.
 
 
@@ -74,43 +73,6 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
         return accountList.size() ;
     }
 
-    @Override
-    public Filter getFilter() {
-        return exampleFilter;
-    }
-
-    private Filter exampleFilter = new Filter(){
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint){
-
-
-
-            List<AccountListItem> filteredList = new ArrayList<>();
-            if(constraint == null || constraint.length()==0) {
-                filteredList.addAll(accountListFull);
-            }else{
-                String filterPattern = constraint.toString().toLowerCase().trim();
-
-                for(AccountListItem item:accountListFull){
-                    if(item.getAccountName().toLowerCase().contains(filterPattern)){
-                        filteredList.add(item);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results){
-            accountList.clear();
-            accountList.addAll((List)results.values);
-            notifyDataSetChanged();
-        }
-    };
     public void addItem(AccountListItem item) {
         accountList.add(item);
     }

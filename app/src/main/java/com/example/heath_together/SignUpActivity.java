@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -56,7 +57,7 @@ public class SignUpActivity  extends Activity implements View.OnClickListener {
     private EditText EditText_PasswordCheck;
     private Button Button_DoSignUp;
     private Button Button_Cancel;
-
+    private ImageView Profile_Photo;
     private FirebaseAuth mAuth;
 
     LoadingDialog customLoadingDialog;
@@ -84,10 +85,11 @@ public class SignUpActivity  extends Activity implements View.OnClickListener {
         EditText_PasswordCheck = findViewById(R.id.SignUp_PasswordCheck);
         Button_DoSignUp = findViewById(R.id.SignUp_DoSignUp);
         Button_Cancel = findViewById(R.id.SignUp_Cancel);
+        Profile_Photo = findViewById(R.id.profilePhoto);
 
         Button_DoSignUp.setOnClickListener(this);
         Button_Cancel.setOnClickListener(this);
-
+        Profile_Photo.setOnClickListener(this);
         Button_DoSignUp.setClickable(false);
 
         //로딩창 객체 생성
@@ -169,6 +171,28 @@ public class SignUpActivity  extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+
+//        switch(view.getId()){
+//            case R.id.profilePhoto:                                       금윤수 작업
+//                startCameraActivity();
+//
+//
+//            case R.id.SignUp_DoSignUp:
+//                if(EditText_Password.getText().toString().equals(EditText_PasswordCheck.getText().toString())){
+//                customLoadingDialog.show();
+//                SignUp();
+//                }else{
+//                Toast.makeText(SignUpActivity.this, "비밀번호가 일치하지 않습니다.",
+//                        Toast.LENGTH_SHORT).show();
+//                }
+//
+//            case R.id.SignUp_Cancel:
+//                finish();
+
+//
+//        }
+
+
         int _id = view.getId();
 
         if (_id == R.id.SignUp_DoSignUp) {
@@ -287,6 +311,13 @@ public class SignUpActivity  extends Activity implements View.OnClickListener {
         finish();
     }
 
+//    private void startCameraActivity(){
+//        Intent intent = new Intent(SignUpActivity.this, SignUpCompleteActivity.class);
+//        startActivity(intent);
+//        finish();
+//        금윤수 작업
+//    }
+
     private boolean check_form(){
         int userName_len = EditText_UserName.getText().toString().length();
         int email_len = EditText_Email.getText().toString().length();
@@ -298,4 +329,10 @@ public class SignUpActivity  extends Activity implements View.OnClickListener {
         else
             return false;
     }
+
+
+
+
+
+
 }
