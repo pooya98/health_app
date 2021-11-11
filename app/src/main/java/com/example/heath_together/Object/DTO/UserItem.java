@@ -4,21 +4,29 @@ public class UserItem {
     private String UserName;
     private String UserEmail;
     private String Uid;
+    private String ProfileUri;
     // userImage
 
     public UserItem() {
 
     }
 
-    public UserItem(String userName, String userEmail, String uid) {
+    public UserItem(String userName, String userEmail, String uid, String profileUri) {
         UserName = userName;
         UserEmail = userEmail;
         Uid = uid;
+        ProfileUri = profileUri;
     }
 
     public String getUid() { return Uid; }
 
     public void setUid(String uid) { Uid = uid; }
+
+
+    public String getProfileUri() { return ProfileUri; }
+
+    public void setProfileUri(String profileUri) { ProfileUri = profileUri; }
+
 
     public String getUserName() {
         return UserName;

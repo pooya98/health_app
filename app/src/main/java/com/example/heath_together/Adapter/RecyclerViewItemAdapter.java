@@ -1,6 +1,7 @@
 package com.example.heath_together.Adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +10,20 @@ import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
+import com.example.heath_together.GroupJoin;
+import com.example.heath_together.Main4;
 import com.example.heath_together.Object.DTO.AccountListItem;
 import com.example.heath_together.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewItemAdapter.ViewHolder>  {
 
@@ -29,6 +36,7 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView1;
+        CircleImageView profileView;
         LinearLayout LinearLayout_member;
 
         ViewHolder(View itemView) {
@@ -36,6 +44,7 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
 
             // 뷰 객체에 대한 참조. (hold strong reference)
             textView1 = itemView.findViewById(R.id.RecyclerviewItem_HealthName) ;
+            profileView = itemView.findViewById(R.id.Profile_Setting_Image);
             LinearLayout_member = itemView.findViewById(R.id.memberLayout);
 
         }
@@ -62,7 +71,25 @@ public class RecyclerViewItemAdapter extends RecyclerView.Adapter<RecyclerViewIt
     @Override
     public void onBindViewHolder(RecyclerViewItemAdapter.ViewHolder holder, int position) {
         holder.textView1.setText(accountList.get(position).getUserName());
+        String userUid = accountList.get(position).getUid();
+        String imageUrl = accountList.get(position).getProfileUri();
+        if (imageUrl!=null) {
+            Glide.with(holder.itemView).load(imageUrl).into(holder.profileView);
+        }else{
+            Glide.with(holder.itemView).load(R.drawable.profile).into(holder.profileView);
+        }
         //public void on Click =>아이템이 눌렸을때 프로필로 입장하는 함수.
+
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v){
+
+
+                AppCompatActivity activity = (AppCompatActivity)v.getContext();
+                Main4 main4 = new Main4(userUid);
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,main4).addToBackStack(null).commit();
+            }
+        });
 
 
     }

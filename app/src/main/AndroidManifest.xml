@@ -29,9 +29,9 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SignUpCompleteActivity" />
         <activity android:name=".MainActivity" android:windowSoftInputMode="adjustNothing"/>
-        <activity android:name=".ProfileSettingActivity" />
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".Main4_3_CreateExercise" />
+        <activity android:name=".Camera.CameraActivity"/>
     </application>
 
 </manifest>

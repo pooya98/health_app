@@ -105,7 +105,7 @@ public class main4_2_CreateList extends Fragment {
         CreateList_DoProfileList.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view){
-                
+
                 clear_fb();
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

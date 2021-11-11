@@ -18,19 +18,80 @@
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendarView4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:mcv_selectionColor="#00f"
+                android:layout_height="0dp"
+                android:layout_margin="20dp"
+                android:layout_weight="3"
+                app:mcv_arrowColor="#4778ee"
+                app:mcv_selectionColor="#4778ee"
                 app:mcv_showOtherDates="all" />
 
-
-            <TextView
-                android:id="@+id/whenDate"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="30dp"
-                android:text="캘린더" />
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_weight="2"
+                android:background="@drawable/edge_groupitem"
+                android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="0dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/whenDate"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="8"
+                        android:gravity="center_vertical"
+                        android:text="9월 11일 토요일"
+                        android:textSize="18dp"
+                        android:textStyle="bold"></TextView>
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginVertical="10dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/edge"
+                        android:scaleType="centerInside"
+                        android:text="운동일지"
+                        android:textSize="10dp"></Button>
+
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/main4_1_listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="2"
+                    android:divider="#ffffff"
+                    android:dividerHeight="0px" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_weight="0.5"
+                    android:gravity="right"
+                    android:text="완료한 운동"
+                    android:textColor="#3E3E3E"
+                    android:textSize="10dp"
+                    android:textStyle="bold"></TextView>
+
+            </LinearLayout>
+
+
+<<<<<<< HEAD
             <ListView
                 android:id="@+id/main4_1_listView"
                 android:layout_width="match_parent"
@@ -39,6 +100,8 @@
                 android:layout_weight="5"
                 android:divider="#FFFFFF"
                 android:dividerHeight="0px"/>
+=======
+>>>>>>> 5795f434ed6c471787fc3de4226148cdc48c25ee
         </LinearLayout>
     </ScrollView>
 

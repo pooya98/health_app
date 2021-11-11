@@ -57,12 +57,30 @@ public class Main4_1 extends Fragment {
 
     //todayDate
     String today = sdf.format(calendar.getTime()).toString();
+    String profileId;
+    String profileUserId;
+    public Main4_1(String userId){
+
+        this.profileUserId= userId;
+
+    }
+    public Main4_1(){
+
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DocumentReference docRef = firebaseinit.firebaseFirestore.collection("calendar").document(UserInfo.user_Id);
+
+        if(profileUserId==null){
+            profileId=UserInfo.user_Id;
+        }else{                                                 //내 계정, 상대 계정 프로필 구분.
+            profileId=profileUserId;
+        }
+
+        DocumentReference docRef = firebaseinit.firebaseFirestore.collection("calendar").document(profileId);
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
