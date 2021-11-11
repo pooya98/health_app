@@ -15,12 +15,25 @@ import androidx.fragment.app.Fragment;
 
 import com.example.heath_together.Adapter.ProfileListViewAdapter;
 import com.example.heath_together.Object.DTO.ProfileListItem;
+import com.example.heath_together.UserInfo.UserInfo;
 
 
 public class Main4_2 extends Fragment {
 
     private View view;
     private Context context;
+
+
+    String profileId;
+    String profileUserId;
+    public Main4_2(String userId){
+
+        this.profileUserId= userId;
+
+    }
+    public Main4_2(){
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +44,13 @@ public class Main4_2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.main4_2, container, false);
+
+        if(profileUserId==null){
+            profileId= UserInfo.user_Id;
+        }else{                                                 //내 계정, 상대 계정 프로필 구분.
+            profileId=profileUserId;
+        }
+
 
         ListView listView = (ListView)view.findViewById(R.id.profile_listView);
         Button btn_create_list = (Button)view.findViewById(R.id.profile_btn_list);

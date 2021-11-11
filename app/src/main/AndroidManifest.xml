@@ -33,6 +33,8 @@
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".main4_2_CreateList" />
         <activity android:name=".main4_2_CreateListList" />
+        <activity android:name=".Main4_3_CreateExercise"/>
+        <activity android:name=".Camera.CameraActivity"/>
     </application>
 
 </manifest>

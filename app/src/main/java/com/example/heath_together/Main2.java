@@ -152,6 +152,9 @@ public class Main2 extends Fragment {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("GroupId", adapter.getItem(position).getGroupId());
+                bundle.putString("GroupName", adapter.getItem(position).getGroupName());
+                bundle.putString("LeaderName", adapter.getItem(position).getLeaderName());
+                bundle.putString("MemberInfo", adapter.getItem(position).getMem_num()+"/"+adapter.getItem(position).getMem_limit());
 
                 Fragment groupFragment = new GroupFragment();
                 groupFragment.setArguments(bundle);

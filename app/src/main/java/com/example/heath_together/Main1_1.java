@@ -13,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -62,10 +63,10 @@ public class Main1_1 extends Fragment {
     private HealthListItemAdapter healthListItemAdapter;
 
     public static Button countButton;
-    private  Button healthButton;
-    private Button healthListButton;
+    private RadioButton healthButton;
+    private RadioButton healthListButton;
 
-    private FloatingActionButton healthPlusButton;
+
     private FloatingActionButton categoriButton ;
     private FloatingActionButton chestButton ;
     private FloatingActionButton shoulderButton ;
@@ -105,7 +106,6 @@ public class Main1_1 extends Fragment {
         healthListList.clear();
         fillHealthItemList("chest");
 
-        healthPlusButton = view.findViewById(R.id.healthPlus);
         countButton = view.findViewById(R.id.countButton);
 
         categoriButton = view.findViewById(R.id.changeCategori);
@@ -300,7 +300,7 @@ public class Main1_1 extends Fragment {
 
     private void setUpHealthReCyclerView(){
 
-        countButton.setText("+");
+        countButton.setText("담으실 운동을 선택해 주세요!");
         healthItemAdapter.mSelectedItems =new SparseBooleanArray(0);
         healthItemAdapter = new HealthItemAdapter(healthItemList);
         healthItemAdapter.setCallbackListener(callbackListener);
@@ -311,7 +311,6 @@ public class Main1_1 extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager) ;
         recyclerView.setAdapter(healthItemAdapter) ;
 
-        healthPlusButton.setVisibility(View.VISIBLE);
         categoriButton.setVisibility(View.VISIBLE);
         categoriButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -326,7 +325,6 @@ public class Main1_1 extends Fragment {
 
     private void setUpHealthListReCyclerView(){
 
-        healthPlusButton.setVisibility(View.INVISIBLE);
         categoriButton.setVisibility(View.INVISIBLE);
         chestButton.startAnimation(cClose);
         shoulderButton.startAnimation(cClose);

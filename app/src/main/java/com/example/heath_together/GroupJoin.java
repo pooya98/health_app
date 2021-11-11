@@ -43,7 +43,7 @@ public class GroupJoin extends Fragment {
 
     String TAG;
     private String groupName,leaderName,groupTag,groupId;
-    private TextView groupN, groupT,leaderN;
+    private TextView groupN, groupT,leaderN,leaderN2;
 
     private Button joinButton;
 
@@ -63,7 +63,7 @@ public class GroupJoin extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.group_join, container, false);
+        view = inflater.inflate(R.layout.group_join_real, container, false);
 
 
 
@@ -78,9 +78,11 @@ public class GroupJoin extends Fragment {
 
         groupN = view.findViewById(R.id.group_name);
         leaderN = view.findViewById(R.id.leader_name);
+        leaderN2 = view.findViewById(R.id.leader_name2);
         groupT = view.findViewById(R.id.group_tag);
 
         groupN.setText(groupName);
+        leaderN2.setText(leaderName);
         leaderN.setText(leaderName);
         groupT.setText(groupTag);
 

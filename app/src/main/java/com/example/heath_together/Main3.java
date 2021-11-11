@@ -129,6 +129,7 @@ public class Main3 extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
+
         searchButton.setOnClickListener(new View.OnClickListener(){
 
 
@@ -201,77 +202,6 @@ public class Main3 extends Fragment {
 
 
 
-//    private void setUpReCyclerView() {
-//        if(moveBut_flag==1) {
-//            //리사이클러뷰에 그룹들을 나열
-//
-//
-//
-//
-//            searchGAdapter = new SearchGAdapter(groupList, getActivity());
-//
-//            recyclerView = view.findViewById(R.id.group_list);  //Main3 서칭 그룹리스트                               2.
-//            recyclerView.setHasFixedSize(true); //뭔지 모르겠음.
-//            layoutManager = new LinearLayoutManager(getActivity());
-//            recyclerView.setLayoutManager(layoutManager);
-//            recyclerView.setAdapter(searchGAdapter);
-//            groupList.clear();
-////            fillGroupList();
-//
-//
-//        }else{
-//
-//            //리사이클러뷰에 계정들을 나열
-//
-//            adapter = new RecyclerViewItemAdapter(accountList) ;
-//            adapter.getFilter().filter(newText2);
-//
-//            recyclerView = view.findViewById(R.id.group_list) ;
-//            recyclerView.setHasFixedSize(true);
-//            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3);
-//            recyclerView.setLayoutManager(gridLayoutManager) ;
-//            recyclerView.setAdapter(adapter) ;
-//
-//            accountList.clear();
-//            fillAccountList();
-//
-//            groupList.clear();
-////            fillGroupList();
-//
-//
-//
-//
-//
-//        }
-//
-//
-//
-//    }
-
-
-
-
-
-//    public void fillAccountList(){
-//
-//        AccountListItem a0 = new AccountListItem("금윤수");
-//        AccountListItem a1 = new AccountListItem("김상근");
-//        AccountListItem a2 = new AccountListItem("mer훈석");
-//        AccountListItem a3 = new AccountListItem("강승우");
-//
-//        accountList.addAll(Arrays.asList(new AccountListItem[]{a0,a1,a2,a3}));
-//
-//    }
-
-
-//    private void firebaseUserSearch(String searchText){
-//
-//        Query firebaseSearchQuery = groupsDatabase.orderByChild("groupName").startAt(searchText).endAt(searchText+"\uf8ff");
-//        groupAdapter = new SearchGAdapter(firebaseSearchQuery);
-//        recyclerView.setAdapter(groupAdapter);
-//
-//
-//    }
 
     public void groupSearchFirebase(){
 
