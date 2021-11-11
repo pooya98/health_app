@@ -55,11 +55,10 @@ public class Main1 extends Fragment {
     private View view;
     ExerciseReadyItemAdapter adapter_stageExercise;
     ExerciseCompleteItemAdapter adapter_completeExercise;
-
     @Override
     public void onStart() {
         super.onStart();
-
+        Log.d(TAG, "main1 onStart");
         DocumentReference docRef = firebaseinit.firebaseFirestore.collection("stageExercise").document(UserInfo.user_Id);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -70,17 +69,23 @@ public class Main1 extends Fragment {
 //                    Log.d("document", String.valueOf(document));
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        Map<String, Object> result = document.getData();
-                        ArrayList<Map<String, Object>> list = (ArrayList<Map<String, Object>>)result.get("stagedExerciseList");
-                        Log.d(TAG, "test today list");
-                        System.out.println(">>>>" + list);
-                        for(Map<String, Object> i : list){
-                            System.out.println(">>>>" + i.get("name"));
+                        if(document.getData() != null){
+                            Map<String, Object> result = document.getData();
+                            ArrayList<Map<String, Object>> list = (ArrayList<Map<String, Object>>)result.get("stagedExerciseList");
+                            if(list != null){
+                                Log.d(TAG, "test today list");
+                                System.out.println(">>>>" + list);
+                                for(Map<String, Object> i : list){
+                                    System.out.println(">>>>" + i.get("name"));
 
-                            adapter_stageExercise.addItem(new ExerciseReadyListItem((String)i.get("id"), (String)i.get("name"), (boolean)i.get("flag_count"), (boolean)i.get("flag_time"), (boolean)i.get("flag_weight") ));
+                                    adapter_stageExercise.addItem(new ExerciseReadyListItem((String)i.get("id"), (String)i.get("name"), (boolean)i.get("flag_count"), (boolean)i.get("flag_time"), (boolean)i.get("flag_weight") ));
+
+                                }
+                                adapter_stageExercise.notifyDataSetChanged();
+                            }
 
                         }
-                        adapter_stageExercise.notifyDataSetChanged();
+
                     } else {
                         Log.d(TAG, "No such document");
                     }

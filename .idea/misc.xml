@@ -7,6 +7,9 @@
         <entry key="..\:/Users/LG/health_app/app/src/main/res/drawable/calendar_not_select_background.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/drawable/calendar_select_background.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/drawable/edge1.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/drawable/edge2.xml" value="0.21979166666666666" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/drawable/radio_button_textcolor_selector.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/drawable/radiobutton_selector.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/calendar_background.xml" value="0.2223731884057971" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/dialog_loading.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/exercise_add_dialog.xml" value="0.16799999999999998" />
@@ -14,19 +17,26 @@
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/exercise_info_dialog.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/exercise_ready_item.xml" value="0.2" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/group_join.xml" value="0.1296875" />
-        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/health_item.xml" value="0.11354166666666667" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/health_item.xml" value="0.2" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/health_list_item.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main1.xml" value="0.2" />
-        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main1_1.xml" value="0.2223731884057971" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main1_1.xml" value="0.1527777777777778" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main2.xml" value="0.2223731884057971" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4.xml" value="0.21422101449275363" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_1.xml" value="0.2" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_1_calendarlist.xml" value="0.21422101449275363" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_2.xml" value="0.1" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_2_create_list.xml" value="0.176" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_2_create_list_list.xml" value="0.1558073654390935" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_2_readylist.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_3.xml" value="0.24818840579710144" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_3_create_exercise.xml" value="0.24818840579710144" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_4.xml" value="0.21422101449275363" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/profile_list_menu.xml" value="0.1" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/menu/bottom_menu.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/menu/exercise_ready_list_menu.xml" value="0.11354166666666667" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/menu/group_delete_menu.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/menu/search_menu.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/TG/AndroidStudioProjects/Heath_Together/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/TG/AndroidStudioProjects/Heath_Together/app/src/main/res/layout/activity_sign_up1.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/TG/AndroidStudioProjects/Heath_Together/app/src/main/res/layout/activity_sign_up2.xml" value="0.20885416666666667" />
@@ -40,69 +50,6 @@
         <entry key="..\:/Users/TG/AndroidStudioProjects/Heath_Together/app/src/main/res/layout/main1_1.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/TG/AndroidStudioProjects/Heath_Together/app/src/main/res/layout/main2.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/TG/AndroidStudioProjects/Heath_Together/app/src/main/res/mipmap-anydpi-v26/ic_main.xml" value="0.21979166666666666" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable-v24/layer_button_checked.xml" value="0.16822916666666668" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/edge.xml" value="0.12552083333333333" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/edge1.xml" value="0.12552083333333333" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/edge2.xml" value="0.12552083333333333" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/edge3.xml" value="0.12552083333333333" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/edge_activated.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/edge_for_title.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/edge_groupitem.xml" value="0.184375" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/edge_inactivated.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/edge_keum.xml" value="0.12552083333333333" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.15208333333333332" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/ic_baseline_group_24.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/ic_baseline_search_keum_24.xml" value="0.1953125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/ic_main_background.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/ic_search.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/item_selector.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/layer_button_checked.xml" value="0.16822916666666668" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/layer_button_unchecked.xml" value="0.16822916666666668" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/loading_bg.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/partition.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/radio_button_textcolor_selector.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/radiobutton_selector.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/reservation_button_state.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/drawable/reservation_check_button_state.xml" value="0.140625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/activity_create_group.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/activity_login.xml" value="0.109375" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/activity_main.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/activity_profile_setting.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/activity_sign_up1.xml" value="0.264" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/activity_sign_up2.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/activity_sign_up3.xml" value="0.264" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/activity_sign_up_complete.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/dialog_loading.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/exercise_add_dialog.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/exercise_complete_item.xml" value="0.264" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/exercise_info_dialog.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/exercise_ready_item.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/group_fragment.xml" value="0.121875" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/group_item.xml" value="0.2" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/group_join.xml" value="0.109375" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/health_item.xml" value="0.109375" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/health_list_item.xml" value="0.109375" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/main1.xml" value="0.18958333333333333" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/main1_1.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/main2.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/main3.xml" value="0.152" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/main4.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/main4_1.xml" value="0.16822916666666668" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/main4_2.xml" value="0.1671875" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/main4_2_create_list.xml" value="0.1671875" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/main4_2_create_list_list.xml" value="0.12447916666666667" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/main4_3.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/main4_3_create_exercise.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/main4_4.xml" value="0.109375" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/member_item.xml" value="0.2" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/profile_list_menu.xml" value="0.109375" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/layout/recyclerview_item.xml" value="0.109375" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/menu/bottom_menu.xml" value="0.115625" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/menu/exercise_ready_list_menu.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/menu/group_delete_menu.xml" value="0.1703125" />
-        <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app(new)/app/src/main/res/menu/search_menu.xml" value="0.115625" />
         <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app/app/src/main/res/drawable/borderline.xml" value="0.24791666666666667" />
         <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app/app/src/main/res/drawable/box.xml" value="0.14537037037037037" />
         <entry key="..\:/Users/rmadb/AndroidStudioProjects/health_app/app/src/main/res/drawable/color.xml" value="0.15" />
