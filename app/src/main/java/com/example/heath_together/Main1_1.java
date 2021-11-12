@@ -26,9 +26,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.heath_together.Adapter.ExerciseReadyItemAdapter;
 import com.example.heath_together.Adapter.HealthItemAdapter;
 import com.example.heath_together.Adapter.HealthListItemAdapter;
+import com.example.heath_together.Adapter.LastHealthListItemAdapter;
+import com.example.heath_together.Adapter.ProfileListViewAdapter;
 import com.example.heath_together.FirebaseInit.firebaseinit;
 import com.example.heath_together.Object.DTO.HealthItem;
 import com.example.heath_together.Object.DTO.HealthListItem;
+import com.example.heath_together.Object.DTO.ProfileListItem;
 import com.example.heath_together.UserInfo.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -74,8 +77,11 @@ public class Main1_1 extends Fragment {
     private FloatingActionButton backButton ;
     private FloatingActionButton guitarButton;
     ExerciseReadyItemAdapter adapter_stageExercise;
+    LastHealthListItemAdapter adapter;
+
 
     ArrayList<HealthItem> add_list;
+    ArrayList<ProfileListItem> list = new ArrayList<ProfileListItem>();
 
 
 
@@ -296,6 +302,7 @@ public class Main1_1 extends Fragment {
 
     private void setUpHealthReCyclerView(){
 
+        countButton.setVisibility(View.VISIBLE);
         countButton.setText("담으실 운동을 선택해 주세요!");
         healthItemAdapter.mSelectedItems =new SparseBooleanArray(0);
         healthItemAdapter = new HealthItemAdapter(healthItemList);
@@ -320,6 +327,7 @@ public class Main1_1 extends Fragment {
     }
 
     private void setUpHealthListReCyclerView(){
+        countButton.setVisibility(View.INVISIBLE);
 
         categoriButton.setVisibility(View.INVISIBLE);
         chestButton.startAnimation(cClose);
@@ -335,16 +343,44 @@ public class Main1_1 extends Fragment {
         legButton.setClickable(false);
         isOpen=false;
 
-
-
-
-        healthListItemAdapter = new HealthListItemAdapter(healthListList) ;
         recyclerView = view.findViewById(R.id.health_list) ;
         recyclerView.setHasFixedSize(true);
+
+
+
+        DocumentReference docRef = firebaseinit.firebaseFirestore.collection("myPageCreateExerciseList").document(UserInfo.user_Id);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if(document.exists()){
+                        Map<String, Object> result = document.getData();
+
+                        for(String key : result.keySet()){
+                            ArrayList<HealthItem> keyValue = (ArrayList<HealthItem>) result.get(key);
+                            Log.d(TAG, "monster : " + key + keyValue.size());
+                            list.add(new ProfileListItem(key, String.valueOf(keyValue.size())));
+
+
+                        }
+                        Log.d(TAG," "+list.size());
+                        adapter = new LastHealthListItemAdapter(list);
+                        recyclerView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager) ;
-        recyclerView.setAdapter(healthListItemAdapter) ;
-
 
 
     }

@@ -1,32 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"><![CDATA[
-
-    />
-
-    ]]>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/healthPlus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-
-        android:layout_marginStart="16dp"
-
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="170dp"
-        android:src="@drawable/plus"
-        android:visibility="invisible"
-        app:backgroundTint="@color/colorPrimary"
-        app:fabCustomSize="75dp"
-        app:maxImageSize="40dp" />
+    android:background="#ffffff"
+    android:orientation="vertical">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/changeCategori2"
@@ -35,16 +14,14 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
 
-        android:layout_marginStart="16dp"
-
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="80dp"
-        android:src="@drawable/ic_dashboard_black_24dp"
-        android:visibility="visible"
+        android:src="@drawable/ic_baseline_menu_24"
+        android:visibility="invisible"
         app:backgroundTint="@color/colorPrimary"
-        app:fabCustomSize="75dp"
-        app:maxImageSize="40dp" />
+        app:fabCustomSize="60dp"
+        app:maxImageSize="30dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/changeGuitar"
@@ -52,15 +29,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="130dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="26dp"
+
+        android:layout_marginBottom="152.5dp"
         android:src="@drawable/etc"
         android:visibility="invisible"
-
-        app:backgroundTint="@color/colorPrimary"
-        app:fabCustomSize="75dp"
+        app:backgroundTint="#81BEF7"
+        app:fabCustomSize="70dp"
         app:maxImageSize="50dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -73,31 +49,13 @@
         android:layout_marginStart="16dp"
 
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="170dp"
+        android:layout_marginEnd="97.75dp"
+        android:layout_marginBottom="75dp"
         android:src="@drawable/chest"
         android:textAlignment="center"
         android:visibility="invisible"
-        app:backgroundTint="@color/colorPrimary"
-        app:fabCustomSize="75dp"
-        app:maxImageSize="50dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/changeBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-
-        android:layout_marginStart="16dp"
-
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="260dp"
-        android:src="@drawable/back"
-        android:visibility="invisible"
-        app:backgroundTint="@color/colorPrimary"
-        app:fabCustomSize="75dp"
+        app:backgroundTint="#81BEF7"
+        app:fabCustomSize="70dp"
         app:maxImageSize="50dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -110,12 +68,30 @@
         android:layout_marginStart="16dp"
 
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="350dp"
+        android:layout_marginEnd="243.25dp"
+        android:layout_marginBottom="75dp"
         android:src="@drawable/leg"
         android:visibility="invisible"
-        app:backgroundTint="@color/colorPrimary"
-        app:fabCustomSize="75dp"
+        app:backgroundTint="#81BEF7"
+        app:fabCustomSize="70dp"
+        app:maxImageSize="50dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/changeBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="170.5dp"
+        android:layout_marginBottom="75dp"
+        android:src="@drawable/back"
+        android:visibility="invisible"
+        app:backgroundTint="#81BEF7"
+        app:fabCustomSize="70dp"
         app:maxImageSize="50dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -125,38 +101,98 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
 
-        android:layout_marginStart="16dp"
-
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="440dp"
+        android:layout_marginEnd="315.5dp"
+        android:layout_marginBottom="75dp"
         android:src="@drawable/shoulder"
         android:visibility="invisible"
-        app:backgroundTint="@color/colorPrimary"
-        app:fabCustomSize="75dp"
+        app:backgroundTint="#81BEF7"
+        app:fabCustomSize="70dp"
         app:maxImageSize="50dp" />
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:gravity="center_vertical"
+                android:text=" 핫둘핫둘,"
+                android:textColor="#4778ee"
+                android:textSize="25dp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:gravity="center_vertical"
+                android:text="리스트 만들기"
+                android:textSize="25dp"
+                android:textStyle="bold"></TextView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="종목"
+                android:textColor="#4778ee"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/health_list"
             android:layout_width="match_parent"
 
-            android:layout_height="match_parent"
-            android:layout_weight="0.7">
+            android:layout_height="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="7.2"
+            android:background="#ffffff"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 
         <Button
             android:id="@+id/countButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="8"
-            android:text="x개 담기" />
+            android:layout_height="0dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginBottom="13dp"
+            android:layout_weight="0.7"
+            android:background="@drawable/edge_activated"
+            android:textColor="#FFFFFF" />
 
-</LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

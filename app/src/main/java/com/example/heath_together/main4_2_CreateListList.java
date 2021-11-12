@@ -59,7 +59,6 @@ public class main4_2_CreateListList extends Fragment {
     private HealthItemListMyPageAdapter healthItemListMyPageAdapter;
     private HealthListItemAdapter healthListItemAdapter;
 
-    private FloatingActionButton healthPlusButton;
     private FloatingActionButton categoriButton ;
     private FloatingActionButton chestButton ;
     private FloatingActionButton shoulderButton ;
@@ -99,7 +98,6 @@ public class main4_2_CreateListList extends Fragment {
         healthListList.clear();
         fillHealthItemList("chest");
 
-        healthPlusButton = view.findViewById(R.id.healthPlus);
         countButton = view.findViewById(R.id.countButton);
 
         categoriButton = view.findViewById(R.id.changeCategori2);
@@ -181,7 +179,7 @@ public class main4_2_CreateListList extends Fragment {
 
     private void setUpHealthReCyclerView(){
 
-        countButton.setText("+");
+        countButton.setText("리스트에 담을 종목을 고르세요!");
         healthItemMypageAdapter.mSelectedItems =new SparseBooleanArray(0);
         healthItemMypageAdapter = new HealthItemMyPageAdapter(healthItemList);
         healthItemMypageAdapter.setCallbackListener(callbackListener);
@@ -192,7 +190,6 @@ public class main4_2_CreateListList extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager) ;
         recyclerView.setAdapter(healthItemMypageAdapter) ;
 
-        healthPlusButton.setVisibility(View.VISIBLE);
         categoriButton.setVisibility(View.VISIBLE);
         categoriButton.setOnClickListener(new View.OnClickListener() {
             @Override
