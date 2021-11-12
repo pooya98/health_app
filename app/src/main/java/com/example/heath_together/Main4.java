@@ -2,6 +2,7 @@ package com.example.heath_together;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -33,14 +34,18 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Main4 extends Fragment implements View.OnClickListener {
 
     private View view;
-
+    Context context;
     CircleImageView profile_Image;
     TextView profile_Name;
+    Fragment fragment;
 
     RadioButton radioButton_Calendar;
     RadioButton radioButton_List;
     RadioButton radioButton_Exercise;
     RadioButton radioButton_Static;
+    String userName;
+    String userProfileUri;
+
     String profileId;
     String profileUserId;
     public Main4(String userId){
@@ -90,16 +95,18 @@ public class Main4 extends Fragment implements View.OnClickListener {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         Map<String, Object> result = document.getData();
-                       String userProfileUri = (String)result.get("prfileUri");
-                       String userName = (String)result.get("userName");
-
+                        userProfileUri = (String)result.get("profileUri");
+                        userName = (String)result.get("userName");
+                        profile_Name.setText(userName);
+                        Log.d(TAG, "profileUri 확인: "+userProfileUri);
+                        Log.d(TAG, "userName 확인"+userName);
                         if (userProfileUri!=null) {
                             Glide.with(view).load(userProfileUri).into(profile_Image);
                         }else{
                             Glide.with(view).load(R.drawable.profile).into(profile_Image);
                         }
 
-                       profile_Name.setText(userName);
+
 
 
 //                        System.out.println(">>>>" + list);

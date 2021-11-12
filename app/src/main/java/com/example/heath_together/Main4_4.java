@@ -108,7 +108,7 @@ public class Main4_4 extends Fragment {
                 BarDataSet bardataset = new BarDataSet(NoOfEmp, "운동량(set수)");
                 chart.animateY(3000);
                 BarData data = new BarData(year, bardataset);   // MPAndroidChart v3.X 오류 발생
-                bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+                bardataset.setColors(ColorTemplate.LIBERTY_COLORS);
                 chart.setData(data);
             }
         });
@@ -136,7 +136,7 @@ public class Main4_4 extends Fragment {
                 BarDataSet bardataset = new BarDataSet(NoOfEmp, "운동량(set수)");
                 chart.animateY(3000);
                 BarData data = new BarData(year, bardataset);   // MPAndroidChart v3.X 오류 발생
-                bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+                bardataset.setColors(ColorTemplate.LIBERTY_COLORS);
                 chart.setData(data);
             }
         });

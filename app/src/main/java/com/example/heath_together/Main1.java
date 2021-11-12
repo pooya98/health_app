@@ -3,6 +3,8 @@ package com.example.heath_together;
 import static android.content.ContentValues.TAG;
 
 
+import static com.example.heath_together.MainActivity.starter;
+
 import android.content.Intent;
 
 import android.os.Bundle;
@@ -115,7 +117,11 @@ public class Main1 extends Fragment {
         Button Button_Exercise_StartEnd = (Button)view.findViewById(R.id.Main1_StartEnd_Button);
         Button Button_Add_Exercise = (Button)view.findViewById(R.id.Main1_Button_AddExercise);
 
+
+
         LinearLayout LinearLayout_StageExercise = (LinearLayout)view.findViewById(R.id.Main1_LinearLayout_StageExercise);
+
+
 
         ListView listView_CompleteExercise = (ListView)view.findViewById(R.id.Main1_ListView_CompleteExercise);
         ListView listView_StageExercise = (ListView)view.findViewById(R.id.Main1_ListView_StageExercise);
@@ -131,18 +137,36 @@ public class Main1 extends Fragment {
         listView_StageExercise.setAdapter(adapter_stageExercise);
 
 
+        if(starter==0){
+            Button_Exercise_StartEnd.setText("운동 시작");
+            LinearLayout_StageExercise.setVisibility(View.GONE);
+            Button_Add_Exercise.setVisibility(View.GONE);
+
+        }
+        else{
+            Button_Exercise_StartEnd.setText("운동 종료");
+            LinearLayout_StageExercise.setVisibility(View.VISIBLE);
+            Button_Add_Exercise.setVisibility(View.VISIBLE);
+
+        }
+
+
+
         Button_Exercise_StartEnd.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if(Button_Exercise_StartEnd.getText().toString().equals("운동 시작")){
+                if(starter==0){
                     Button_Exercise_StartEnd.setText("운동 종료");
                     LinearLayout_StageExercise.setVisibility(View.VISIBLE);
                     Button_Add_Exercise.setVisibility(View.VISIBLE);
+                    starter = 1;
                 }
                 else{
+
                     Button_Exercise_StartEnd.setText("운동 시작");
                     LinearLayout_StageExercise.setVisibility(View.GONE);
                     Button_Add_Exercise.setVisibility(View.GONE);
+                    starter = 0;
                 }
             }
         });
