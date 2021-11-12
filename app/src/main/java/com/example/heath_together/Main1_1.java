@@ -211,33 +211,29 @@ public class Main1_1 extends Fragment {
                                 if (document.exists()){
                                     Map<String, Object> result = document.getData();
                                     ArrayList<Map<String, Object>> list = (ArrayList<Map<String, Object>>)result.get("stagedExerciseList");
-//                                    test section
-                                    Log.d(TAG, "array list data set : " + list);
-                                    Log.d(TAG, "add list data set : " + add_list);
-
-                                    for(Map<String, Object> i : list) {
-                                        boolean overlap = true;
-                                        for (HealthItem item : add_list){
-                                            String name = item.getName();
-                                            if(name.equals(i.get("name"))){
-                                                overlap = false;
+                                    if(list != null) {
+                                        for(Map<String, Object> i : list) {
+                                            boolean overlap = true;
+                                            for (HealthItem item : add_list){
+                                                String name = item.getName();
+                                                if(name.equals(i.get("name"))){
+                                                    overlap = false;
+                                                }
                                             }
-                                        }
-                                        if (overlap){
-                                        HealthItem new_item = new HealthItem(
-                                                document.getId(),
-                                                (String) i.get("name"),
-                                                (String) i.get("type"),
-                                                (boolean) i.get("flag_count"),
-                                                (boolean) i.get("flag_time"),
-                                                (boolean) i.get("flag_weight")
-                                        );
-                                        System.out.println(">>>>>2" + document.getId());
+                                            if (overlap){
+                                                HealthItem new_item = new HealthItem(
+                                                        document.getId(),
+                                                        (String) i.get("name"),
+                                                        (String) i.get("type"),
+                                                        (boolean) i.get("flag_count"),
+                                                        (boolean) i.get("flag_time"),
+                                                        (boolean) i.get("flag_weight")
+                                                );
+                                                System.out.println(">>>>>2" + document.getId());
 
-                                        add_list.add(new_item);}
+                                                add_list.add(new_item);}
+                                        }
                                     }
-//                                        add_list.notifyDataSetChanged();
-//                                    test end
                                     Log.d(TAG, "search add_list : " + add_list );
                                     docData.put("stagedExerciseList", add_list);
                                     firebaseinit.firebaseFirestore.collection("stageExercise").document(UserInfo.user_Id)

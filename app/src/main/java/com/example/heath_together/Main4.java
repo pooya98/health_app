@@ -95,11 +95,11 @@ public class Main4 extends Fragment implements View.OnClickListener {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         Map<String, Object> result = document.getData();
-                        userProfileUri = (String)result.get("profileUri");
-                        userName = (String)result.get("userName");
-                        profile_Name.setText(userName);
-                        Log.d(TAG, "profileUri 확인: "+userProfileUri);
-                        Log.d(TAG, "userName 확인"+userName);
+
+                       String userProfileUri = (String)result.get("profileUri");
+                       String userName = (String)result.get("userName");
+
+
                         if (userProfileUri!=null) {
                             Glide.with(view).load(userProfileUri).into(profile_Image);
                         }else{
