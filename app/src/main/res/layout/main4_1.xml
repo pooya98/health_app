@@ -89,19 +89,6 @@
                     android:textStyle="bold"></TextView>
 
             </LinearLayout>
-
-
-<<<<<<< HEAD
-            <ListView
-                android:id="@+id/main4_1_listView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_weight="5"
-                android:divider="#FFFFFF"
-                android:dividerHeight="0px"/>
-=======
->>>>>>> 5795f434ed6c471787fc3de4226148cdc48c25ee
         </LinearLayout>
     </ScrollView>
 

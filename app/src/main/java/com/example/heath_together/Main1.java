@@ -122,6 +122,10 @@ public class Main1 extends Fragment {
 
         LinearLayout LinearLayout_StageExercise = (LinearLayout)view.findViewById(R.id.Main1_LinearLayout_StageExercise);
 
+        LinearLayout_StageExercise.setVisibility(View.GONE);
+        Button_Add_Exercise.setVisibility(View.GONE);
+        Button_Exercise_StartEnd.setText("운동시작");
+
         ListView listView_CompleteExercise = (ListView)view.findViewById(R.id.Main1_ListView_CompleteExercise);
         ListView listView_StageExercise = (ListView)view.findViewById(R.id.Main1_ListView_StageExercise);
         adapter_completeExercise = new ExerciseCompleteItemAdapter();

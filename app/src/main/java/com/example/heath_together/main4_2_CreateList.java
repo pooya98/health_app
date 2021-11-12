@@ -33,6 +33,7 @@ import com.google.firebase.firestore.FieldValue;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +45,7 @@ public class main4_2_CreateList extends Fragment {
     private Button CreateList_DoProfileList;
     HealthItemListMyPageAdapter healthItemListMyPageAdapter;
 
-
+    ArrayList<Object> docData2 = new ArrayList<>();
     ArrayList<HealthItem> static_list = new ArrayList<HealthItem>();
 
     @Override
@@ -94,7 +95,7 @@ public class main4_2_CreateList extends Fragment {
         Log.d(TAG, "main4_2 onCreateView");
         view = inflater.inflate(R.layout.main4_2_create_list, container, false);
 
-
+        EditText listName = view.findViewById(R.id.CreateList_Name);
         CreateList_DoProfileList = view.findViewById(R.id.CreateList_DoProfileList);
         exercisePlusButton = view.findViewById(R.id.exercise_plus_button);
         ListView listView = view.findViewById(R.id.CreatList_ListView);
@@ -106,7 +107,8 @@ public class main4_2_CreateList extends Fragment {
             @Override
             public void onClick(View view){
 
-                clear_fb();
+                String list_name = String.valueOf(listName.getText());
+                mypage_createExerciseList(list_name);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction().remove(main4_2_CreateList.this).commit();
@@ -129,6 +131,81 @@ public class main4_2_CreateList extends Fragment {
 
 
         return view;
+    }
+
+    public void mypage_createExerciseList(String name){
+        String list_name = name;
+        Map<String, Object> docData = new HashMap<>();
+
+//        myPageReadyExerciseList
+        DocumentReference docRef = firebaseinit.firebaseFirestore.collection("myPageReadyExerciseList").document(UserInfo.user_Id);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()){
+                        Map<String, Object> result = document.getData();
+                        ArrayList<Map<String, Object>> list = (ArrayList<Map<String, Object>>)result.get("readyExerciseList");
+                        for(Map<String, Object> item : list){
+                            HealthItem newItem = new HealthItem(
+                                    (String) item.get("id"),
+                                    (String) item.get("name"),
+                                    (String) item.get("type"),
+                                    (boolean) item.get("flag_count"),
+                                    (boolean) item.get("flag_time"),
+                                    (boolean) item.get("flag_weight")
+                            );
+                            docData2.add(newItem);
+                        }
+                        docData.put(list_name, docData2);
+                        load_ReadyExercise(list_name, docData, docData2);
+                    } else {
+                        Log.d(TAG, "No such document");
+
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+    }
+
+    private void load_ReadyExercise(String list_name, Map<String, Object> docData, ArrayList<Object> docData2){
+        DocumentReference docRef = firebaseinit.firebaseFirestore.collection("myPageCreateExerciseList").document(UserInfo.user_Id);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()){
+                        firebaseinit.firebaseFirestore.collection("myPageCreateExerciseList").document(UserInfo.user_Id)
+                                .update(docData)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Log.d(TAG, "onSuccess");
+                                        clear_fb();
+                                    }
+                                });
+                    } else {
+                        firebaseinit.firebaseFirestore.collection("myPageCreateExerciseList").document(UserInfo.user_Id)
+                                .set(docData)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Log.d(TAG, "onSuccess");
+                                        clear_fb();
+                                    }
+                                });
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
     private void clear_fb(){

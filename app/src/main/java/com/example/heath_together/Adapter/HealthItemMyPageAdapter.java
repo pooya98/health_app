@@ -55,7 +55,7 @@ public class HealthItemMyPageAdapter extends RecyclerView.Adapter<HealthItemMyPa
 
             // 뷰 객체에 대한 참조. (hold strong reference)
             textView1 = itemView.findViewById(R.id.HeathItem_HealthName) ;
-            LinearLayout_health = itemView.findViewById(R.id.healthLayout);
+            LinearLayout_health = itemView.findViewById(R.id.plusHealthLayout);
 
 
 
@@ -86,7 +86,7 @@ public class HealthItemMyPageAdapter extends RecyclerView.Adapter<HealthItemMyPa
         Context context = parent.getContext() ;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
 
-        View view = inflater.inflate(R.layout.health_item, parent, false) ;
+        View view = inflater.inflate(R.layout.plus_exercise_item, parent, false) ;
         HealthItemMyPageAdapter.ViewHolder vh = new HealthItemMyPageAdapter.ViewHolder(view) ;
 
         return vh ;

@@ -16,6 +16,7 @@
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/exercise_complete_item.xml" value="0.4" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/exercise_info_dialog.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/exercise_ready_item.xml" value="0.2" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/group_item.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/group_join.xml" value="0.1296875" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/health_item.xml" value="0.2" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/health_list_item.xml" value="0.11354166666666667" />
@@ -25,14 +26,15 @@
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4.xml" value="0.21422101449275363" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_1.xml" value="0.2" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_1_calendarlist.xml" value="0.21422101449275363" />
-        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_2.xml" value="0.1" />
-        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_2_create_list.xml" value="0.176" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_2.xml" value="0.2" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_2_create_list.xml" value="0.264" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_2_create_list_list.xml" value="0.1558073654390935" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_2_readylist.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_3.xml" value="0.24818840579710144" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_3_create_exercise.xml" value="0.24818840579710144" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/main4_4.xml" value="0.21422101449275363" />
-        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/profile_list_menu.xml" value="0.1" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/plus_exercise_item.xml" value="0.2" />
+        <entry key="..\:/Users/LG/health_app/app/src/main/res/layout/profile_list_menu.xml" value="0.264" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/menu/bottom_menu.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/menu/exercise_ready_list_menu.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/LG/health_app/app/src/main/res/menu/group_delete_menu.xml" value="0.20364583333333333" />
