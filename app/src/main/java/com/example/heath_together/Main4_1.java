@@ -90,11 +90,25 @@ public class Main4_1 extends Fragment {
 
                     if(document.exists()){
                         calendar_data = document.getData();
-                        ArrayList<Map<String, Object>> data = (ArrayList<Map<String, Object>>) calendar_data.get(today);
+                        if (calendar_data.containsKey(today)){
+                            ArrayList<Map<String, Object>> data = (ArrayList<Map<String, Object>>) calendar_data.get(today);
 
-                        for(Map<String ,Object> item : data){
-                            Log.d(TAG, "get Item" + item.get("exerciseName"));
+                            for(Map<String ,Object> item : data){
+                                Log.d(TAG, "get Item" + item.get("exerciseName"));
+                            }
+
+
+                            if (calendar_data.containsKey(today)){
+                                ArrayList<Map<String, Object>> exercise = (ArrayList<Map<String, Object>>) calendar_data.get(today);
+                                for(Map<String, Object> item : exercise){
+                                    adapter.addItem(new ExerciseCompleteListItem(item.get("exerciseName").toString(), item.get("set").toString()));
+                                }
+                                listView.setAdapter(adapter);
+                                setListViewHeightBasedOnChildren(listView);
+                                adapter.notifyDataSetChanged();
+                            }
                         }
+
                         for (String key : calendar_data.keySet() ){
                             List<String> strKey = Arrays.asList(key.split("-"));
                             calendarDayList.add(CalendarDay.from(Integer.parseInt(strKey.get(0)), Integer.parseInt(strKey.get(1))-1 , Integer.parseInt(strKey.get(2))));
@@ -102,16 +116,6 @@ public class Main4_1 extends Fragment {
 
                         EventDecorator eventDecorator = new EventDecorator(calendarDayList, getActivity());
                         calendarView.addDecorators(eventDecorator);
-
-                        if (calendar_data.containsKey(today)){
-                            ArrayList<Map<String, Object>> exercise = (ArrayList<Map<String, Object>>) calendar_data.get(today);
-                            for(Map<String, Object> item : exercise){
-                                adapter.addItem(new ExerciseCompleteListItem(item.get("exerciseName").toString(), item.get("set").toString()));
-                            }
-                            listView.setAdapter(adapter);
-                            setListViewHeightBasedOnChildren(listView);
-                            adapter.notifyDataSetChanged();
-                        }
                     }
                 }
             }

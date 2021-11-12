@@ -90,7 +90,7 @@ public class Main4 extends Fragment implements View.OnClickListener {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         Map<String, Object> result = document.getData();
-                       String userProfileUri = (String)result.get("prfileUri");
+                       String userProfileUri = (String)result.get("profileUri");
                        String userName = (String)result.get("userName");
 
                         if (userProfileUri!=null) {
